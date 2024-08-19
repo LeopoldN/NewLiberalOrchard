@@ -125,7 +125,7 @@ function updatePaginationControls() {
 
 // Fetch the JSON data
 let articles = [];
-fetch('./articles_0.1.json')
+fetch('./articles_0.2.json')
     .then(response => response.json())
     .then(data => {
         articles = data.articles;
