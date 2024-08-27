@@ -1,6 +1,8 @@
 let currentPage = 1;
 const articlesPerPage = 5;
 let totalPages = 1;
+let articles = []; // Holds the original articles data
+let filteredArticles = []; // Holds the filtered articles based on search or sorting criteria
 
 // Function to render articles on the page
 function renderArticles(articles, page) {
@@ -12,46 +14,41 @@ function renderArticles(articles, page) {
     articlesContainer.innerHTML = ''; // Clear existing articles
 
     articlesToShow.forEach(article => {
-        const articleElement = document.createElement('div');
-        articleElement.classList.add('w3-col', 'w3-hover-light-gray', 'w3-hover-opacity', 'w3-padding');
-        articleElement.setAttribute('data-topics', article.topics);
+        const articleContainer = document.createElement('div');
+        articleContainer.classList.add('w3-container');
 
         const articleLink = document.createElement('a');
         articleLink.href = article.url;
-        articleLink.classList.add('w3-margin');
-        articleLink.style.textDecoration = 'none';
+        articleLink.classList.add('article-link');
+
+        const articleCard = document.createElement('div');
+        articleCard.classList.add('w3-card', 'w3-hover-shadow', 'article-card');
 
         const articleImage = document.createElement('img');
-        articleImage.classList.add('w3-col', 'w3-round-xlarge');
-        articleImage.style.width = '98%';
         articleImage.src = article.image;
         articleImage.alt = article.altText;
+        articleImage.classList.add('article-image');
 
-        const articleContent = document.createElement('div');
-        articleContent.classList.add('w3-row');
-        articleContent.style.margin = '0 4px';
-
-        const articleTitle = document.createElement('h3');
-        articleTitle.classList.add('w3-row');
-        articleTitle.style.textAlign = 'left';
+        const articleTitle = document.createElement('div');
+        articleTitle.classList.add('article-title');
         articleTitle.innerText = article.title;
 
-        const articleDescription = document.createElement('p');
-        articleDescription.classList.add('w3-row', 'w3-left-align');
+        const articleDescription = document.createElement('div');
+        articleDescription.classList.add('article-description');
         articleDescription.innerText = article.description;
 
-        const articleAuthorDate = document.createElement('p');
-        articleAuthorDate.classList.add('w3-row', 'w3-left-align', 'w3-padding-top-32');
-        articleAuthorDate.innerText = `By ${article.author} | ${article.date}`;
+        const articleInfo = document.createElement('div');
+        articleInfo.classList.add('article-info');
+        articleInfo.innerHTML = `${article.date} by <span class="article-author">${article.author}</span>`;
 
-        articleContent.appendChild(articleTitle);
-        articleContent.appendChild(articleDescription);
-        articleContent.appendChild(articleAuthorDate);
+        articleCard.appendChild(articleImage);
+        articleCard.appendChild(articleTitle);
+        articleCard.appendChild(articleDescription);
+        articleCard.appendChild(articleInfo);
 
-        articleLink.appendChild(articleImage);
-        articleLink.appendChild(articleContent);
-        articleElement.appendChild(articleLink);
-        articlesContainer.appendChild(articleElement);
+        articleLink.appendChild(articleCard);
+        articleContainer.appendChild(articleLink);
+        articlesContainer.appendChild(articleContainer);
     });
 }
 
@@ -74,7 +71,7 @@ function renderPagination(totalPages) {
         pageBtn.innerText = i;
         pageBtn.addEventListener('click', () => {
             currentPage = i;
-            renderArticles(articles, currentPage);
+            renderArticles(filteredArticles, currentPage);
             updatePaginationControls();
         });
         paginationContainer.appendChild(pageBtn);
@@ -91,7 +88,7 @@ function renderPagination(totalPages) {
     document.getElementById('prev-btn').addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
-            renderArticles(articles, currentPage);
+            renderArticles(filteredArticles, currentPage);
             updatePaginationControls();
         }
     });
@@ -99,10 +96,12 @@ function renderPagination(totalPages) {
     document.getElementById('next-btn').addEventListener('click', () => {
         if (currentPage < totalPages) {
             currentPage++;
-            renderArticles(articles, currentPage);
+            renderArticles(filteredArticles, currentPage);
             updatePaginationControls();
         }
     });
+
+    updatePaginationControls(); // Ensure controls are updated after rendering
 }
 
 // Function to update pagination controls
@@ -123,17 +122,71 @@ function updatePaginationControls() {
     });
 }
 
+// Function to filter articles based on search query
+function filterArticles(query) {
+    query = query.toLowerCase();
+    filteredArticles = articles.filter(article => article.title.toLowerCase().includes(query));
+
+    totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+    currentPage = 1; // Reset to the first page
+    renderArticles(filteredArticles, currentPage);
+    renderPagination(totalPages);
+}
+
+// Function to parse the date from "Month Year" format
+function parseDate(dateString) {
+    const [month, year] = dateString.split(' ');
+    return new Date(`${month} 1, ${year}`); // Day is set to 1 for comparison purposes
+}
+
+// Function to sort articles based on the selected criterion
+function sortArticles(criterion) {
+    if (criterion === 'Latest') {
+        filteredArticles.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    } else if (criterion === 'Oldest') {
+        filteredArticles.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+    } else if (criterion === 'Most Viewed') {
+        filteredArticles.sort((a, b) => b.views - a.views);
+    }
+
+    totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+    currentPage = 1; // Reset to the first page
+    renderArticles(filteredArticles, currentPage);
+    renderPagination(totalPages);
+}
+
+
+// Function to handle the button clicks
+function handleButtonClick(event) {
+    const buttons = document.querySelectorAll('.button-group .button');
+    buttons.forEach(button => button.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const criterion = event.target.innerText;
+    sortArticles(criterion);
+}
+
 // Fetch the JSON data
-let articles = [];
-fetch('./articles_0.2.json')
+fetch('articles_0.2.json')
     .then(response => response.json())
     .then(data => {
         articles = data.articles;
+        filteredArticles = articles; // Initially, filtered articles are the same as all articles
         totalPages = Math.ceil(articles.length / articlesPerPage);
 
         // Render the first page of articles and the pagination controls
-        renderArticles(articles, currentPage);
+        renderArticles(filteredArticles, currentPage);
         renderPagination(totalPages);
-        updatePaginationControls();
     })
     .catch(error => console.error('Error fetching JSON data:', error));
+
+// Event listener for search bar input
+document.getElementById('search-bar').addEventListener('input', function() {
+    const query = this.value;
+    filterArticles(query);
+});
+
+// Event listeners for the sorting buttons
+document.querySelectorAll('.button-group .button').forEach(button => {
+    button.addEventListener('click', handleButtonClick);
+});

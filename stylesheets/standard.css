@@ -18,61 +18,82 @@ body {
     padding: 20px; /* Default padding */
 }
 
-.feed-header {
-  margin: 0;
-  margin-bottom: 5px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;      
+.article-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
-
-.feed-bio {
-  margin: 0;
-  opacity: 70%;    
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;      
+.article-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
-
-.feed-author-date {
-  margin: 0;
-  margin-top: 7px;
-  opacity: 70%;
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 16px 0 8px;
+  color: #333;
 }
-
-.feed-link {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.article-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 16px;
+}
+.article-info {
+  font-size: 14px;
+  color: #999;
+}
+.article-author {
+  font-weight: bold;
+}
+.article-link {
   text-decoration: none;
   color: inherit;
-  width: 100%;
-  padding: 10px; /* Add padding to create some space */
-  background-color: transparent; /* Set the initial background color to transparent */
-  transition: background-color 0.3s ease; /* Add a transition for a smooth color change */
-  position: relative;
+}
+.article-link:hover .article-title {
+  color: #0b7dda;
+}
+
+.button-group {
+  display: inline-flex;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-group .button {
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-group .button:hover {
+  background-color: #ddd;
+}
+
+.button-group .button.active {
+  background-color: white;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
-.feed-wrapper:hover .feed-link::before {/*wraps a single article*/
-  opacity: 1;
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
-.label-wrap {
-  margin-top: 5px;
-}
-
-.label {   
-  color: black;
-  padding: 4px;
-  text-align: center;
-  border-radius: 5px;
-}
-
-
-
 
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
@@ -122,7 +143,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-ul{list-style-type:none;padding:0;margin:0}.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.w3-ul li:last-child{border-bottom:none}
 .w3-tooltip,.w3-display-container{position:relative}.w3-tooltip .w3-text{display:none}.w3-tooltip:hover .w3-text{display:inline-block}
 .w3-ripple:active{opacity:0.5}.w3-ripple{transition:opacity 0s}
-.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
+.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%;border-radius: 16px;}
 .w3-select{padding:9px 0;width:100%;border:none;border-bottom:1px solid #ccc}
 .w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer}
 .w3-dropdown-hover:hover .w3-dropdown-content{display:block}
