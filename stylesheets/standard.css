@@ -110,6 +110,33 @@ color: #fff;
 opacity: 0.8;
 }
 
+.logo {
+  width: 64px;
+  height: 64px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (max-width: 600px) {
+
+  .hide {
+    display: none;
+  }
+  
+  .responsive-logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .responsive-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
