@@ -167,7 +167,7 @@ function handleButtonClick(event) {
 }
 
 // Fetch the JSON data
-fetch('articles_0.2.json')
+fetch('articles.json')
     .then(response => response.json())
     .then(data => {
         articles = data.articles;
