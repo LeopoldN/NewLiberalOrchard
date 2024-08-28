@@ -95,6 +95,21 @@ body {
   flex-direction: column;
 }
 
+.copy-shares{
+  position: relative;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.copy-shares img {
+color: #fff;
+}
+
+.copy-shares:hover img {
+opacity: 0.8;
+}
+
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}

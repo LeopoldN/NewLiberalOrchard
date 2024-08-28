@@ -2,76 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@liberalorchard">
-<meta name="twitter:url" content="http://www.liberalorchard.com/bidenomics-a-monthly-review-july-2023.html">
-<meta name="twitter:title" content="Liberal Orchard">
-<meta name="twitter:description" content="Where the Seeds of Freedom are Planted">
-<meta name="twitter:image" content="http://www.liberalorchard.com/assets/LOblackbg.png">
-<meta name="twitter:image:alt" content="The Liberal Orchard logo">
+<meta name="twitter:url" content="http://www.liberalorchard.com/bidenomics-a-monthly-review-june-2023.html">
+<meta name="twitter:title" content="Bidenomics: A monthly review of the Economy - Liberal Orchard">
+<meta name="twitter:description" content="Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP">
+<meta name="twitter:image" content="https://liberalorchard.com/assets/Article%20Photos/bidenomicsmain.webp">
+<meta name="twitter:image:alt" content="President Biden with aviator glasses that have dollar signs over the lenses. There is text that says Bidenomics over his mouth with a white square background. In the bottom left corner it states June Edition 2023 - Liberal Orchard. The background is blue.">
+<!--Twitter Information-->     
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="title" content="Home Page - Liberal Orchard">
-<meta name="description" content="Where the Seeds of Freedom are Planted">
-<link rel="icon" type="image/x-icon" href="./assets/LOblackbg.png">    
-<title>Liberal Orchard</title>
+<meta name="title" content="Bidenomics: A monthly review of the Economy - Liberal Orchard">
+<meta name="description" content="Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP">
+<link rel="icon" type="image/x-icon" href="/assets/Logo_white.svg">    
+
+<title>Bidenomics: A monthly review of the Economy - Liberal Orchard</title>
 <link rel="stylesheet" href="./stylesheets/standard.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
-<script
-  async
-  src="https://widgets.givebutter.com/latest.umd.cjs?acct=x5fKEyTqqYBfVQUy&p=other"
-></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('.copy-shares').addEventListener('click', function(event) {
+        event.preventDefault();
+        const linkToCopy = this.href;
+  
+        navigator.clipboard.writeText(linkToCopy)
+          .then(function() {
+            // Show tooltip
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.visibility = 'visible';
+  
+            // Hide tooltip after 2 seconds
+            setTimeout(function() {
+              tooltip.style.visibility = 'hidden';
+            }, 2000);
+          })
+          .catch(function(err) {
+            console.error('Could not copy text: ', err);
+          });
+      });
+    });
+  </script>
+    <script src="readtime.js"></script>
 
 </head>
 <body>
 	
 	<!-- NAVIGATION TOP BAR -->
-	<givebutter-widget id="LZNMYL"></givebutter-widget>
-	<div class="w3-bar w3-theme ">
-	  <a href="#" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge">Liberal Orchard</a>
-	  <a href="#" class="w3-bar-item w3-button w3-right w3-hover-theme" style="padding-top:3px"><img width="32px" height="32px" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon"></img></a>
-	  <a href="#" class="w3-bar-item w3-button w3-right w3-hover-black w3-hover-opacity w3-round-xxlarge">About</a>
-	</div>
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="LiberalOrchard" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+	<div class="w3-bar w3-border-bottom" style="display: flex; align-items: center; justify-content: space-between;">
+		<!-- Left-side Logo and Text -->
+		<div style="display: flex; align-items: center;">
+		  <a href="#" class="w3-bar-item w3-left">
+			<img width="64px" height="64px" src="./assets/Logo_black.svg" alt="Logo">
+		  </a>
+		  <a href="./index.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge w3-large">
+			Liberal Orchard
+		  </a>
+		</div>
+		
+		<!-- Right-side Icons and About -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./about.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge">
+			About
+		  </a>
+		  <a href="http://www.liberal.cafe" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+			<img width="32px" height="32px" src="./assets/mug-saucer-solid.svg" alt="Mug icon">
+		  </a>
+		  <a href="https://www.x.com/LiberalOrchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+			<img width="32px" height="32px" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon">
+		  </a>
+		</div>
+	  </div>
+
 	
 	<div class="w3-row w3-padding w3-margin"></div>	
 
-	<!-- Search function-->
-	<div class="w3-row w3-padding">
-		<div class="w3-col m2 l3"><br></div>
-		<div class="w3-col m8 l6">
-			<div class="w3-row w3-margin-left">
-				<img class="w3-left w3-margin-right"  width="32px" height="32px" src="./assets/magnifying-glass-solid.svg" alt="Search icon"></img>
-				<input type="text" id="search-bar" class="w3-input w3-left" placeholder=" Search articles by title...">
-			</div>
-	 	</div>
-		<div class="w3-col m2 l3"></div>
-	</div>
 	
 	<!-- CENTER COLUMN FOR FEED -->
-	<div class="w3-container w3-center w3-margin-top">
-	  <div class="w3-col m2 l3"><br></div>
-	  <div class="w3-col m8 l6 w3-theme w3-center w3-leftbar w3-rightbar w3-border-black">
-		  
-		  <!-- articles-->
-		  
-		  <div id="articles"></div>		    
-		  
-		  
-		  
-		  
-	  </div>
-	  <div class="w3-col m2 l3"></div>
-	</div>
-	
-	<!-- Pagination -->	
-	<div class="w3-row w3-padding w3-margin"></div>
-	<div class="w3-col m2 l3"><br></div>
-	<div id="pagination" class="w3-col m8 l6 w3-center">
-	  <a href="#" id="prev-btn" class="w3-button">&laquo;</a>
+	<div class="w3-container center-container w3-margin-bottom">
+        <div class="w3-container" style="width: 70%;">
+        <h1 class=""><b>Bidenomics: a monthly review of the economy</b></h1>
+        <h3 class="w3-margin-bottom">Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP</h3>
+        <img class="w3-image w3-round-large" src="./assets/Article Photos/bidenomics.jpg"></img>
+            
+        <p class="w3-text-grey w3-opacity-min w3-margin-top w3-margin-bottom">By Liberal Orchard | June 30th 2023</p>
 
-	  <a href="#" id="next-btn" class="w3-button">&raquo;</a>
+            <div class="w3-bar w3-border-bottom w3-margin-bottom">
+                <p class="w3-bar-item" style="padding-left: 0px; margin-left: 0;" id="readingtime"></p>
+                <a href="https://twitter.com/intent/tweet?url=http://www.liberalorchard.com/bidenomics-a-monthly-review-june-2023.html&text=I really enjoyed this article from @LiberalOrchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme w3-right">
+                    <img width="32px" height="32px" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon">
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.liberalorchard.com/bidenomics-a-monthly-review-june-2023.html&t=I really enjoyed this article from Liberal Orchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme w3-right">
+                    <img width="32px" height="32px" src="./assets/square-facebook-brands-solid.svg" alt="Facebook icon">
+                </a>
+                <a href="http://www.liberalorchard.com/bidenomics-a-monthly-review-june-2023.html" class="w3-bar-item w3-button w3-hover-theme w3-right copy-shares">
+                    <img width="32px" height="32px" src="./assets/clipboard-regular.svg" alt="Clipboard share icon">
+                    <span id="tooltip" style="visibility: hidden; position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, 100%); background-color: #000; color: #fff; padding-bottom: 5px; border-radius: 5px;">Link copied!</span>
+                </a>
+            </div>
+
+            <!-- GDP -->
+
+            <h2 class="w3-margin-top w3-margin-bottom">GDP</h2>
+            <p class="articletext">
+            The U.S. economy expanded at a 2.0% annualized rate in the first quarter of 2023, according to the <a class="article-link" target="_blank" href="https://www.bea.gov/news/2023/gross-domestic-product-third-estimate-corporate-profits-revised-estimate-and-gdp-industry">Bureau of Economic Analysis'</a> third estimate. This growth rate is higher than the 1.3% increase projected in the second estimate and follows a 2.6% GDP increase in the fourth quarter of 2022.<br><br>
+
+            The upward revision in GDP growth was primarily due to increased exports and consumer spending, which were partly offset by downward revisions to nonresidential fixed investment and federal government spending. Imports, which subtract from GDP calculations, were revised down.
+            </p> 
+            <div class="w3-margin-top w3-margin-bottom">                  
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FCS&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" allowTransparency="true" loading="lazy"></iframe>
+            </div>
+            <p class="articletext">
+            The report also included estimates of real Gross Output by industry. In the first quarter, the value added of private services-producing industries increased by 3.4%, government increased by 3.7%, and private goods-producing industries increased by 0.4%. In total, 16 of 22 industry groups contributed to the 2.7% increase in first-quarter real Gross Output.
+            </p>
+
+            <!-- Inflation -->
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom">Inflation</h2>
+            <p class="articletext">
+            It is important to note that while this is the June 2023 report, inflation data for the current month won't be released until next month. Therefore, we will be viewing the May 2023 inflation report released this month. This month's data will be available in next month's release.<br><br>
+            In May, the U.S. Consumer Price Index for All Urban Consumers (CPI-U) saw a modest rise of 0.1 percent, following a 0.4 percent increase in April, according to the <a class="article-link" target="_blank" href="https://www.bls.gov/news.release/cpi.htm">U.S. Bureau of Labor Statistics</a>. When compared with May of 2022 the CPI has risen 4.0% this month.
+            </p>
+            <div class="w3-margin-top w3-margin-bottom">
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FOf&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" allowTransparency="true" loading="lazy"></iframe>
+            </div>
+            <p class="articletext">
+            Core CPI (All items minus Energy and Food) rose 0.4% this month compared to last month and 5.3% compared to last May. While inflation is still growing it has significantly slowed over the past few months coinciding with the Federal Reserve's interest rates.
+            </p>
+          
+            <!-- Debt/Savings -->
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom">Consumer Debt to Savings</h2>
+            <p class="articletext">
+            A common talking point amongst Republicans is that the current economic "boom" we are experiencing is due to consumers taking out considerable amounts of debt to fuel their shopping. This fact is typically paired with conjecture and exaggeration about how eggs are $15 and people need to spend their whole paycheck on groceries. This is usually done mendaciously by showing the charts below.
+            </p>
+            <div class="w3-margin-top w3-margin-bottom">
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FTK&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" allowTransparency="true" loading="lazy"></iframe>      
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FUU&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" allowTransparency="true" loading="lazy"></iframe>      
+            </div>
+            <p class="articletext">
+            Now obviously this looks horrendous! The Personal Savings Rate is near an all-time low at 4.6% and consumer credit card debt has jumped hundreds of billions! But this is meant to deceive you and make you think the world is falling apart. Ignoring the fact that the personal savings rate has recovered and has been recovering since the pandemic when one looks at Household Debt payments as a percentage of Disposable Income, we're not far off from pre-pandemic levels.
+            </p>
+            <div class="w3-margin-top w3-margin-bottom">
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FVF&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" loading="lazy"></iframe>
+            </div>
+            <p class="articletext">
+            As you can see, other than the dip during covid (most likely due to the recession, spending cuts, and massive stimulus/debt payment suspensions), we are on the same trend as we were pre-pandemic.
+            </p>
+
+            <!-- Jobs -->
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom">JOBS JOBS JOBS!</h2>
+            <p class="articletext">Look, it does not matter what anyone says, the job market is (and has been) on FIRE. The <a class="article-link" target="_blank" href="https://www.bls.gov/news.release/cpi.htm">U.S. Bureau of Labor Statistics</a> reported that total nonfarm payroll employment increased by 339,000 in May, while the unemployment rate rose by 0.3 percentage points to 3.7%. Many conservatives will try to refute this claim by stating the Biden Administration did not "create" jobs and that these were simply people coming back to the labor force after the pandemic. This is simply not true or at least bad faith for a few reasons. First, during the pandemic, many people switched industries (as can be seen in the below chart). Therefore, while the leisure/hospitality industry lost ~400k employees since the start of the pandemic, the manufacturing industry added ~200k employees. That is not "people returning to work," that is entire industries creating 200k jobs that never existed before.    
+            </p>
+            <div class="w3-margin-top w3-margin-bottom">
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FZn&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" loading="lazy"></iframe>
+            </div>
+            <p class="articletext">
+            Secondly, when looking at the total number of employed people and the Prime Age Laborforce Participation Rate, we have still seen growth from the pre-pandemic highs. 
+            </p>
+            <div class="w3-margin-top w3-margin-bottom">
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FZK&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" loading="lazy"></iframe>
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16FZP&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" loading="lazy"></iframe>
+            </div>    
+            <p class="articletext">
+            Total employment is roughly 4 million higher than it was pre-pandemic, does that really sound like no new jobs were created? On the other hand, Prime-Age Laborforce Participation (LFPR) is at a peak last seen during the Clinton Administration. You may be asking, why should I care about Prime Age? What is labor force participation?<br><br>
+            Well, in short, the LFPR is simply the total number of people in the labor force (employed/unemployed/seeking jobs) divided by the total civilian population. Prime-Age removes those younger than 25 and older than 54 from the equation. This is because economists believe that range is a person's "prime time" to be working. It removes those nearing retirement and those who are in high school/college from our numbers. I think most people would agree that measuring the number of people who are in their working years that are in the labor market is a much more telling metric.<br><br>
+            Therefore, what we are seeing above is an extremely healthy labor force, with a participation rate above pre-pandemic levels. And no matter what any Trumpy says, we are doing great.    
+            </p>
+
+            <!-- Notable Data and Revisions Manufacturing spending/Prime Labor? or should that be jobs-->
+        
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom">Notable Data and Revisions</h2>
+            <p class="articletext">We have added this section to post about macro-level data that we find interesting or that was being discussed widely during the current month. This month, we've decided to focus on Total Manufacturing spending in the US, which has massively increased since Biden took office; and real housing output per capita which sheds light on why housing prices have been drastically increasing over the past decade.
+            </p>
+            <div class="w3-margin-top w3-margin-bottom">
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16G14&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" loading="lazy"></iframe>
+            <iframe src="https://fred.stlouisfed.org/graph/graph-landing.php?g=16G1a&width=650vh&height=475" scrolling="no" frameborder="0" style="overflow:hidden; width:100%; height:525px; margin-left: auto; margin-right: auto;" loading="lazy"></iframe>
+            </div>
+            <p class="articletext">
+            We hope you enjoyed this month's edition of Bidenomics. Feel free to comment/discuss the above data in the comment section below.
+            </p>
+            <br>
+
+
+                                                     <!-- Disqus Universal Code -->
+                                                     <div class = "disqus-width" id="disqus_thread"></div>
+                                                     <script>
+                                                     (function() { // DON'T EDIT BELOW THIS LINE
+                                                     var d = document, s = d.createElement('script');
+                                                     s.src = 'https://liberalorchard.disqus.com/embed.js';
+                                                     s.setAttribute('data-timestamp', +new Date());
+                                                     (d.head || d.body).appendChild(s);
+                                                     })();
+                                                     </script>
+                                                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                   <!-- End of Disqus Universal Code --> 
+
+        </div>
 	</div>
-	<div class="w3-col m2 l3"></div>	
-	<div class="w3-row w3-padding w3-margin"></div>
-	<script src="./feed-script_0.2.js"></script>
+
+  
+
+  <div class="w3-container w3-black w3-padding" style="width: 100%;">
+		<p class="w3-center">@LiberalOrchard</p>
+	</div>
+
 </body>
 </html>
