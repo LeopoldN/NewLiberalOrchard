@@ -145,7 +145,7 @@ function sortArticles(criterion) {
         filteredArticles.sort((a, b) => parseDate(b.date) - parseDate(a.date));
     } else if (criterion === 'Oldest') {
         filteredArticles.sort((a, b) => parseDate(a.date) - parseDate(b.date));
-    } else if (criterion === 'Most Viewed') {
+    } else if (criterion === 'Hot') {
         filteredArticles.sort((a, b) => b.views - a.views);
     }
 
@@ -167,7 +167,7 @@ function handleButtonClick(event) {
 }
 
 // Fetch the JSON data
-fetch('articles.json?v=3')
+fetch('articles.json?v=4')
     .then(response => response.json())
     .then(data => {
         articles = data.articles;

@@ -120,12 +120,46 @@ opacity: 0.8;
   height: 32px;
 }
 
+.article-width{
+  width: 70%;
+}
+
 @media screen and (max-width: 600px) {
 
+  .article-width{
+    width: 99%;
+  }
+
+  .smalltexth1{
+    font-size:large;
+  }
+  .smalltexth3{
+    font-size: small;
+  }
+
+  .articleshares{
+    flex-direction: column;
+    align-items: center;
+  }
+
+        /* Ensure the buttons take up the full width and center */
+        .w3-bar-item {
+          padding: 5px 0;
+          text-align: center;
+          width: 100%;
+      }
+
+      /* Ensure flex containers are centered and take full width */
+      .w3-bar > div {
+          justify-content: center;
+          width: 100%;
+      }
+      
   .hide {
     display: none;
   }
   
+  /* do I need? i think tehy go with header */
   .responsive-logo {
     width: 40px;
     height: 40px;
