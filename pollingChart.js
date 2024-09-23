@@ -49,11 +49,11 @@ function renderChart() {
     const parseTime = d3.timeParse("%Y-%m-%d");
 
     // Load the JSON data
-    d3.json("pollingData.json?v=1").then(data => {
+    d3.json("pollingData.json?v=2").then(data => {
         data.forEach(d => {
             d.date = parseTime(d.date);
-            d.harris = +d.harris;
-            d.trump = +d.trump;
+            d.harris = d.harris !== null ? +d.harris : null;
+            d.trump = d.trump !== null ? +d.trump : null;
         });
 
         const x = d3.scaleTime()
@@ -116,17 +116,19 @@ function renderChart() {
             .attr("fill", "none");
 
         // Add candidate labels on the right side
-        const latestData = data[data.length - 1];
+        const latestData = data.filter(d => d.harris !== null && d.trump !== null && d.diff !== null).slice(-1)[0];
+
+
 
         svg.append("text")
-            .attr("x", width + 10)
+            .attr("x", x(latestData.date) + 10)
             .attr("y", y(latestData.harris))
             .attr("fill", "blue")
             .attr("text-anchor", "start")
             .text(`Harris ${latestData.harris}%`);
 
         svg.append("text")
-            .attr("x", width + 10)
+            .attr("x", x(latestData.date) + 10)
             .attr("y", y(latestData.trump))
             .attr("fill", "red")
             .attr("text-anchor", "start")
@@ -137,7 +139,8 @@ function renderChart() {
         const eventDates = [
             {date: "2024-07-21", label: "Biden drops"},
             {date: "2024-08-19", label: "DNC"},
-            {date: "2024-08-21", label: "Kennedy drops"}
+            {date: "2024-08-21", label: "Kennedy drops"},
+            {date: "2024-09-10", label: "Debate"}
         ];
 
         // Parse event dates and add event lines

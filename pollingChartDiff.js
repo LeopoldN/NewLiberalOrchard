@@ -35,14 +35,12 @@ function renderChart() {
     const parseDate = d3.timeParse("%Y-%m-%d");
 
     // Load the data from external JSON file
-    d3.json("pollingData.json?v=1").then(data => {
+    d3.json("pollingData.json?v=2").then(data => {
 
         // Convert date strings to Date objects
         data.forEach(d => {
             d.date = parseDate(d.date);
-            d.harris = +d.harris;
-            d.trump = +d.trump;
-            d.diff = +d.diff;
+            d.diff = d.diff !== null ? +d.diff : null;
         });
 
         // Set scales
@@ -122,6 +120,16 @@ function renderChart() {
             .attr("y2", y(0))
             .attr("stroke", "gray")
             .attr("stroke-width", 1)
+
+        // Add candidate labels on the right side
+        const latestData = data.filter(d => d.diff !== null).slice(-1)[0];
+
+        svg.append("text")
+            .attr("x", x(latestData.date) + 10)
+            .attr("y", y(latestData.diff))
+            .attr("fill", "blue")
+            .attr("text-anchor", "start")
+            .text(`Harris D+${latestData.diff}%`);
 
 
         // Line generator
