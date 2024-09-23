@@ -10,9 +10,19 @@ function renderChart() {
     const containerHeight = container.node().getBoundingClientRect().height;
 
     // Increase the top margin to create space for the title
-    const margin = {top: 100, right: 150, bottom: 50, left: 50}; 
+
+    // Adjust margins based on screen width (smaller for mobile)
+    let margin = { top: 100, right: 150, bottom: 50, left: 50 };
+
+    if (containerWidth < 500) {  // for mobile
+        margin = { top: 80, right: 30, bottom: 40, left: 40 };
+    }
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
+
+    // Adjust font sizes dynamically based on container width
+    const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
+    const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
 
 
     // Create the SVG container
@@ -38,7 +48,7 @@ function renderChart() {
         .attr("y", -50)
         .attr("text-anchor", "middle")
         .text("Kamala's polling lead")
-        .style("font-size", "24px")
+        .style("font-size", titleFontSize)
         .style("font-weight", "bold");
 
     // Parse the date and format the data
@@ -65,7 +75,9 @@ function renderChart() {
         // Add X axis
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x)
+            .ticks(Math.max(2, Math.floor(containerWidth / 100))) // Adjust number of ticks based on width
+        );  // fewer ticks on mobile;
 
         // Add Y axis
         svg.append("g").call(d3.axisLeft(y));
@@ -139,7 +151,8 @@ function renderChart() {
             .attr("y", y(latestData.diff))
             .attr("fill", "blue")
             .attr("text-anchor", "start")
-            .text(`Harris D+${latestData.diff}%`);
+            .text(`Harris D+${latestData.diff}%`)
+            .style("font-size", labelFontSize);
 
 
         // Line generator

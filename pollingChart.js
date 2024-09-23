@@ -8,8 +8,12 @@ function renderChart() {
     const containerWidth = container.node().getBoundingClientRect().width;
     const containerHeight = container.node().getBoundingClientRect().height;
 
-    // Increase the top margin to create space for the title
-    const margin = {top: 100, right: 150, bottom: 50, left: 50}; 
+    // Adjust margins based on screen width (smaller for mobile)
+    let margin = { top: 100, right: 150, bottom: 50, left: 50 };
+
+    if (containerWidth < 500) {  // for mobile
+        margin = { top: 80, right: 30, bottom: 40, left: 40 };
+    } 
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
 
@@ -21,13 +25,18 @@ function renderChart() {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // Adjust font sizes dynamically based on container width
+    const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
+    const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
+    const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
+
     // Add the title
     svg.append("text")
         .attr("x", (width+50) / 2)
         .attr("y", -50)
         .attr("text-anchor", "middle")
         .text("2024 Presidential Election Polling")
-        .style("font-size", "24px")
+        .style("font-size", titleFontSize)
         .style("font-weight", "bold");
 
         // Add axis labels
@@ -75,7 +84,9 @@ function renderChart() {
 
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x)
+            .ticks(Math.max(2, Math.floor(containerWidth / 100))) // Adjust number of ticks based on width
+        );  // fewer ticks on mobile;
 
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -174,7 +185,7 @@ function renderChart() {
                 .attr("x", x(eventDate)+shift)
                 .attr("y", -10)  // Higher above the chart
                 .attr("text-anchor", "middle")
-                .style("font-size", "12px")
+                .style("font-size", eventFontSizes)
                 .style("font-weight", "bold")
                 .text(event.label);
         });
