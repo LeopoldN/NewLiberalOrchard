@@ -14,6 +14,7 @@ function renderChart() {
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
 
+
     // Create the SVG container
     const svg = container
         .append("svg")
@@ -21,6 +22,15 @@ function renderChart() {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Append an image to the chart
+    svg.append("image")
+    .attr("xlink:href", "/assets/Logo_black.svg")  // Path to the image file
+    .attr("x", width-75)  // Adjust the x position to place the image as desired
+    .attr("y", (height-100))          // Adjust the y position to place the image as desired
+    .attr("width", 100)     // Set the width of the image
+    .attr("height", 100)   // Set the height of the image
+    .attr("opacity", 0.5);  // Set the opacity (50% visible)
 
     // Add the title
     svg.append("text")
@@ -169,32 +179,32 @@ function renderChart() {
 
 
         // Add legend
-        const legend = svg.append("svg")
-            .attr("class", "legend");
+        //const legend = svg.append("svg")
+        //    .attr("class", "legend");
 
-        legend.append("rect")
-            .attr("x", width + 15)
-            .attr("y", 5)
-            .attr("width", 15)
-            .attr("height", 15)
-            .style("fill", "blue");
+        //legend.append("rect")
+        //    .attr("x", width + 15)
+        //    .attr("y", 5)
+        //    .attr("width", 15)
+        ///    .attr("height", 15)
+        //    .style("fill", "blue");
 
-        legend.append("text")
-            .attr("x", width + 35)
-            .attr("y", 17)
-            .text("Kamala Harris");
+        //legend.append("text")
+         //   .attr("x", width + 35)
+        //    .attr("y", 17)
+        //    .text("Kamala Harris");
 
-        legend.append("rect")
-            .attr("x", width + 15)
-            .attr("y", 25)
-            .attr("width", 15)
-            .attr("height", 15)
-            .style("fill", "red");
+       // legend.append("rect")
+       //     .attr("x", width + 15)
+       //     .attr("y", 25)
+        //    .attr("width", 15)
+        //    .attr("height", 15)
+        //    .style("fill", "red");
 
-        legend.append("text")
-            .attr("x", width + 35)
-            .attr("y", 37)
-            .text("Donald Trump");
+       // legend.append("text")
+       //     .attr("x", width + 35)
+       //     .attr("y", 37)
+       //     .text("Donald Trump");
 
 
 

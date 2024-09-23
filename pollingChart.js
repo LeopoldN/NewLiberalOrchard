@@ -46,6 +46,15 @@ function renderChart() {
             .attr("class", "axis-label")
             .text("Likely Vote (%)");
 
+        // Append an image to the chart
+        svg.append("image")
+        .attr("xlink:href", "/assets/Logo_black.svg")  // Path to the image file
+        .attr("x", width-75)  // Adjust the x position to place the image as desired
+        .attr("y", (height-100))          // Adjust the y position to place the image as desired
+        .attr("width", 100)     // Set the width of the image
+        .attr("height", 100)   // Set the height of the image
+        .attr("opacity", 0.5);  // Set the opacity (50% visible)
+
     const parseTime = d3.timeParse("%Y-%m-%d");
 
     // Load the JSON data
