@@ -1,6 +1,17 @@
 {
     "articles": [
         {
+            "title": "Liberal Orchard's 2024 Polling Average",
+            "description": "People are complex, models should be simple. So we made one and cut the bs.",
+            "author": "Liberal Orchard",
+            "date": "September 2024",
+            "views": "4",
+            "topics": "economics,politics,biden",
+            "url": "./2024-election-polling.html",
+            "image": "./assets/Article%20Photos/2024-Election.webp",
+            "altText": "A picture of the statue of liberty and an American flag with text in front of it that reads out Liberal Orchard and below that a black arrow pointing right with a text overlay that says 2024 election."
+        },
+        {
             "title": "Bidenomics: A monthly review of the Economy - August",
             "description": "Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP",
             "author": "Liberal Orchard",

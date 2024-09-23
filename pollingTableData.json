@@ -1,0 +1,87 @@
+{
+    "national": {
+        "Harris": 49.2,
+        "Trump": 47.1,
+        "margin": "D+2.1",
+        "change_last_week": "D+1.3"
+    },
+    "states": [
+        {
+            "state": "Pennsylvania",
+            "Harris": 48.9,
+            "Trump": 47.4,
+            "margin": "D+1.5",
+            "change_last_week": "D+1.2"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        },
+        {
+            "state": "Wisconsin",
+            "Harris": 49.4,
+            "Trump": 47.6,
+            "margin": "D+1.8",
+            "change_last_week": "R+0.4"
+        }
+    ]
+}

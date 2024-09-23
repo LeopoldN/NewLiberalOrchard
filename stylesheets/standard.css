@@ -172,6 +172,39 @@ opacity: 0.8;
 }
 
 
+/* This is for PollingTables*/
+#pollingTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+#pollingTable th, #pollingTable td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+#pollingTable th {
+  background-color: #f2f2f2;
+}
+
+.blueChart {
+  background-color: #e7f3fe; /* Light blue */
+  color: #31708f; /* Darker blue for text */
+}
+
+.redChart {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Darker red for text */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Highlight on hover */
+}
+
+
+
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
