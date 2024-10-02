@@ -1,0 +1,214 @@
+k<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Chart Configuration</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.button {
+    flex: 1;
+    text-align: center;
+    margin: 0 5px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #f0f0f0;
+}
+
+input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+
+input[type="radio"]:checked + .button {
+    background-color: #007bff;
+    color: white;
+}
+
+
+    </style>
+
+<script>
+
+</script>
+</head>
+<body>
+    <div class="container">
+        <h1>D3 Chart Configuration</h1>
+        <form id="chartForm">
+            <div class="form-group">
+                <label for="thisFileName">Json File Name:</label>
+                <input type="text" id="thisFileName" placeholder="usdebt.json">
+            </div>
+            <div class="form-group">
+                <label for="xDomainLow">Y-Range Minimum</label>
+                <input type="number" id="xDomainLow" placeholder="16000">
+            </div>
+            <div class="form-group">
+                <label for="xDomainHigh">Y-Range Maximum</label>
+                <input type="number" id="xDomainHigh" placeholder="30000">
+            </div>
+            <div class="form-group">
+                <label for="thisTitle">Chart Title:</label>
+                <input type="text" id="thisTitle" placeholder="Total US Public Debt (in Billions)">
+            </div>
+            <div class="form-group">
+                <label for="thisYTitle">Y Axis Title:</label>
+                <input type="text" id="thisYTitle" placeholder="Total US Debt (in Billions)">
+            </div>
+            <div class="form-group">
+                <label for="isStepCurve">Should this be a StepCurve Graph?:</label>
+                <input type="checkbox" id="isStepCurve">
+            </div>
+            <div class="form-group">
+                <label for="isDollar">Is this a dollar amount Variable?:</label>
+                <input type="checkbox" id="isDollar">
+            </div>
+            <div class="form-group">
+                <label for="isPercentage">Is this a percentage Variable? (cant be dollar and percentage):</label>
+                <input type="checkbox" id="isPercentage">
+            </div>
+            <div class="form-group">
+                <label for="toolTipDesc">Shortened Variable name:</label>
+                <input type="text" id="toolTipDesc" placeholder="Revenue">
+            </div>
+            <div class="form-group">
+                <label for="thisYTitle">Y Axis Title:</label>
+                <input type="text" id="thisYTitle" placeholder="Total US Debt (in Billions)">
+            </div>
+            <div class="form-group">
+                <label for="jsonX">name of json variable's column:</label>
+                <input type="text" id="jsonX" placeholder="debt">
+            </div>
+            <div class="form-group">
+                <label for="strokeColor">Stroke Color:</label>
+                <input type="text" id="strokeColor" placeholder="debt">
+            </div>
+            <div class="form-group">
+                <label for="strokeWidth">Whats the stroke width:</label>
+                <input type="number" id="strokeWidth" placeholder="3">
+            </div>
+            <div class="form-group">
+                <label>Position of the logo:</label>
+                <div class="button-group">
+                    <div class="form-group">
+                        <label for="isTopR">Top Right:</label>
+                        <input type="checkbox" id="isTopR">
+                    </div>
+                    <div class="form-group">
+                        <label for="isTopL">Top Left:</label>
+                        <input type="checkbox" id="isTopL">
+                    </div>
+                    <div class="form-group">
+                        <label for="isBotR">Bottom Right:</label>
+                        <input type="checkbox" id="isBotR">
+                    </div>
+                    <div class="form-group">
+                        <label for="isBotL">Bottom Left:</label>
+                        <input type="checkbox" id="isBotL">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="isTwoVariables">is there a second variable?:</label>
+                <input type="checkbox" id="isTwoVariables">
+            </div>
+
+            <div id="second-variable-inputs" style="display: block;">
+                <div class="form-group">
+                    <label for="toolTipDesc2">Shortened 2nd Variable name:</label>
+                    <input type="text" id="toolTipDesc2" placeholder="Ratio">
+                </div>
+                <div class="form-group">
+                    <label for="thisYTitleRight">2nd Y Axis Title:</label>
+                    <input type="text" id="thisYTitleRight" placeholder="Total US Debt (in Billions)">
+                </div>
+                <div class="form-group">
+                    <label for="jsonX2">name of 2nd json variable's column:</label>
+                    <input type="text" id="jsonX2" placeholder="debtGDP">
+                </div>
+                <div class="form-group">
+                    <label for="strokeColor2">Stroke Color:</label>
+                    <input type="text" id="strokeColor2" placeholder="debt">
+                </div>
+                <div class="form-group">
+                    <label for="xDomainL2">2nd Y-Range minimum:</label>
+                    <input type="number" id="xDomainL2" placeholder="95">
+                </div>
+                <div class="form-group">
+                    <label for="xDomainH2">2nd Y-Range max:</label>
+                    <input type="number" id="xDomainH2" placeholder="150">
+                </div>
+                <div class="form-group">
+                    <label for="isDollar2">Is this a dollar amount Variable?:</label>
+                    <input type="checkbox" id="isDollar2">
+                </div>
+                <div class="form-group">
+                    <label for="isPercentage2">Is this a percentage Variable? (cant be dollar and percentage):</label>
+                    <input type="checkbox" id="isPercentage2">
+                </div>
+            </div>
+        </form>
+        <div class="form-group">
+            <button id="genButton">Generate Chart</button>
+        </div>
+    </div>
+    <div id="debts-container"></div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="/scripts/chartGen.js"></script> <!-- Link to your JS file -->
+</body>
+</html>

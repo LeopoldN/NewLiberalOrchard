@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@liberalorchard">
+<meta name="twitter:url" content="http://www.liberalorchard.com/2024-election-polling.html">
+<meta name="twitter:title" content="Liberal Orchard's 2024 Polling Average">
+<meta name="twitter:description" content="People are complex, models should be simple. So we made one and cut the bs.">
+<meta name="twitter:image" content="https://liberalorchard.com/assets/Article%20Photos/2024-Election.webp">
+<meta name="twitter:image:alt" content="A picture of the statue of liberty and an American flag with text in front of it that reads out Liberal Orchard and below that a black arrow pointing right with a text overlay that says 2024 election.">
+<!--Twitter Information-->     
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="Liberal Orchard's 2024 Polling Average">
+<meta name="description" content="People are complex, models should be simple. So we made one and cut the bs.">
+<link rel="icon" type="image/x-icon" href="/assets/Logo_white.svg">    
+
+<title>Liberal Orchard's 2024 Polling Average</title>
+<link rel="stylesheet" href="./stylesheets/standard.css?v=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('.copy-shares').addEventListener('click', function(event) {
+        event.preventDefault();
+        const linkToCopy = this.href;
+  
+        navigator.clipboard.writeText(linkToCopy)
+          .then(function() {
+            // Show tooltip
+            const cliptooltip = document.getElementById('cliptooltip');
+            cliptooltip.style.visibility = 'visible';
+  
+            // Hide tooltip after 2 seconds
+            setTimeout(function() {
+              cliptooltip.style.visibility = 'hidden';
+            }, 2000);
+          })
+          .catch(function(err) {
+            console.error('Could not copy text: ', err);
+          });
+      });
+    });
+  </script>
+    <script src="readtime.js"></script>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <style>
+        .line {
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .harris {
+            stroke: blue;
+        }
+
+        .trump {
+            stroke: red;
+        }
+
+
+        .axis-label {
+            font-size: 12px;
+        }
+        .grid line {
+            stroke: lightgrey;
+            stroke-opacity: 0.7;
+            shape-rendering: crispEdges;
+        }
+        .grid path {
+            stroke-width: 0;
+        }
+        .legend {
+            font-size: 12px;
+        }
+    </style>
+
+</head>
+<body>
+	
+	<!-- NAVIGATION TOP BAR -->
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="LiberalOrchard" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+	<div class="w3-bar w3-border-bottom" style="display: flex; align-items: center; justify-content: space-between;">
+		<!-- Left-side Logo and Text -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./index.html" class="w3-bar-item w3-left">
+			<img class="logo" src="./assets/Logo_black.svg" alt="Logo">
+		  </a>
+		  <a href="./index.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge w3-large">
+			<span class="hide">Liberal Orchard</span> 
+		  </a>
+		</div>
+		
+		<!-- Right-side Icons and About -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./about.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge">
+			About
+		  </a>
+		  <a href="http://www.liberal.cafe" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+			<img class="icon" src="./assets/mug-saucer-solid.svg" alt="Mug icon">
+		  </a>
+		  <a href="https://www.x.com/LiberalOrchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+			<img class="icon" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon">
+		  </a>
+		</div>
+	  </div>
+
+	
+	<div class="w3-row w3-padding w3-margin"></div>	
+
+	
+	<!-- article -->
+	<div class="w3-container center-container w3-margin-bottom">
+        <div class="w3-container article-width">
+        <h1 class="smalltexth1"><b>2024 Presidential Election Polling</b></h1>
+        <h3 class="w3-margin-bottom smalltexth3">People are complex, models should be simple. So we made one and cut the bs.</h3>
+        <img class="w3-image w3-round-large" src="./assets/Article Photos/2024-Election.webp"></img>
+            
+        <p class="w3-text-grey w3-opacity-min w3-margin-top w3-margin-bottom smalltexth3">By Liberal Orchard | September 23rd 2024</p>
+
+            <div class="w3-bar w3-border-bottom w3-margin-bottom articleshares">
+                <div style="display: flex; align-items: center;">
+                <p class="w3-bar-item smalltexth3" style="padding-left: 0px; margin-left: 0;" id="readingtime"></p>
+                </div>
+                <div style="display: flex; align-items: center;">
+                <a href="https://twitter.com/intent/tweet?url=http://www.liberalorchard.com/2024-election-polling.html&text=I really enjoyed this article from @LiberalOrchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme w3-right">
+                    <img width="32px" height="32px" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon">
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.liberalorchard.com/2024-election-polling.html&t=I really enjoyed this article from Liberal Orchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme w3-right">
+                    <img width="32px" height="32px" src="./assets/square-facebook-brands-solid.svg" alt="Facebook icon">
+                </a>
+                <a href="http://www.liberalorchard.com/2024-election-polling.html" class="w3-bar-item w3-button w3-hover-theme w3-right copy-shares">
+                    <img width="32px" height="32px" src="./assets/clipboard-regular.svg" alt="Clipboard share icon">
+                    <span id="cliptooltip" style="visibility: hidden; position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, 100%); background-color: #000; color: #fff; padding-bottom: 5px; border-radius: 5px;">Link copied!</span>
+                </a>
+                </div>
+            </div>
+
+            <!-- Polling Information -->
+
+            <div class="w3-panel w3-pale-red w3-leftbar w3-border-red">
+              <h3>Last Update September 23rd 2024 </h3>
+              <p>We will try to keep this updated weekly with the newest polls in our average</p>
+            </div>
+
+            <h2 class="w3-margin-top w3-margin-bottom">Why did we create an average?</h2>
+            <p class="articletext">
+            It seems as though every year we get pollsters and models telling us they have updated their data, weights, and such only for them to be off consistently. 
+            Although we believe this to be normal, human beings are inherently irrational especially when being asked questions over the phone. We here at liberal orchard 
+            think that the solution to this is not to weight certain models that we deem bad one way or another but to grab the most common/used polls and average them with
+            equal weighting. Why? Because the solution to the irrationality of humans is not to bring in our own subjective and possibly irrational beliefs and mess with data.
+            It's as simple as that, we will be adding a table with all of our included pollsters in the future as well as our methodology (it's pretty short).
+
+            </p> 
+
+            <div id="netexp-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartNextExp.js"></script>
+            <div id="medhouse-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartMedianHouse.js"></script>
+            <div id="ManInv-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartManInv.js"></script>
+            <div id="LFPR-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartLFPR.js"></script>
+            <div id="debts-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartDebts.js"></script>
+            <div id="cpi-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartCPI.js"></script>
+            <div id="fedfunds-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartFedFunds.js"></script>
+            <div id="fExp-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartFGEXP.js"></script>
+            <div id="receipts-container" style="width: 100%; height: 500px;"></div>
+            <script src="/scripts/chartFGReceipts.js"></script>
+            
+
+
+            <h2 class="w3-margin-top w3-margin-bottom">What does this say?</h2>
+            <p class="articletext">
+            All of the polls that we include are national likely voters and are closer to telling us what the popular vote would look like more than what the probability of the election
+            will be. We are working on a model that would give us our own estimate of who is most likely to win the election in the near future, but as we stated before this brings in our
+            own subjective beliefs. Therefore we're trying to make one that is as untouched by subjectivity as possible, and most likely wont be finished before the election :( (2028 we're gunning for you).
+            In the mean time you can have faith that our polling average is built to give the best possible read on the national vote.
+            </p> 
+            <br/><br/><br/>
+            <!-- End of Polling Information -->
+
+
+
+                                                     <!-- Disqus Universal Code -->
+                                                     <div class = "disqus-width" id="disqus_thread"></div>
+                                                     <script>
+                                                     (function() { // DON'T EDIT BELOW THIS LINE
+                                                     var d = document, s = d.createElement('script');
+                                                     s.src = 'https://liberalorchard.disqus.com/embed.js';
+                                                     s.setAttribute('data-timestamp', +new Date());
+                                                     (d.head || d.body).appendChild(s);
+                                                     })();
+                                                     </script>
+                                                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                   <!-- End of Disqus Universal Code --> 
+
+        </div>
+	</div>
+
+  
+
+  <div class="w3-container w3-black w3-padding" style="width: 100%;">
+		<p class="w3-center">@LiberalOrchard</p>
+	</div>
+
+</body>
+</html>

@@ -1,11 +1,22 @@
 {
     "articles": [
         {
+            "title": "Liberal Orchard Essays: Populist Poison",
+            "description": "An editorial essay on the poisons of populism",
+            "author": "Liberal Orchard",
+            "date": "September 2024",
+            "views": "4",
+            "topics": "economics,politics,biden",
+            "url": "./populist-poison.html",
+            "image": "./assets/Article%20Photos/Liberal.webp",
+            "altText": "Burst gradient of blue into black with the words Liberal Orchard The poison of populism written in the middle with a matrix behind it"
+        },
+        {
             "title": "Liberal Orchard's 2024 Polling Average",
             "description": "People are complex, models should be simple. So we made one and cut the bs.",
             "author": "Liberal Orchard",
             "date": "September 2024",
-            "views": "4",
+            "views": "5",
             "topics": "economics,politics,biden",
             "url": "./2024-election-polling.html",
             "image": "./assets/Article%20Photos/2024-Election.webp",
