@@ -30,6 +30,12 @@ function renderChart() {
     const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
     const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
 
+    var isTwoVariables = false;
+    var oLink1="https://fred.stlouisfed.org/series/CPIAUCSL";
+    var oLink2="";
+    var oLinkName="CPI Source";
+    var oLinkName2="";
+
     // Add the title
     svg.append("text")
         .attr("x", (width+50) / 2)
@@ -190,6 +196,34 @@ function renderChart() {
         .attr("height", height)                // Full height of the chart
         .style("fill", "red")                  // Set the color to red
         .style("opacity", 0.05);                // 50% opacity
+
+        // Add source text
+        svg.append("text")
+            .attr("x", 0) // Center the text horizontally
+            .attr("y", height+40) // Position near the bottom of the SVG
+            .attr("text-anchor", "middle") // Align text to center
+            .style("font-size", "12px")
+            .style("fill", "#000")
+            .style("cursor", "pointer")
+            .text(oLinkName)
+            .on("click", function() {
+            // Redirect to the sources page when clicked
+            window.open(oLink1, "_blank");
+            });
+        if(isTwoVariables){
+        svg.append("text")
+            .attr("x", 0) // Center the text horizontally
+            .attr("y", height+40) // Position near the bottom of the SVG
+            .attr("text-anchor", "middle") // Align text to center
+            .style("font-size", "12px")
+            .style("fill", "#000")
+            .style("cursor", "pointer")
+            .text(oLinkName2)
+            .on("click", function() {
+            // Redirect to the sources page when clicked
+            window.open(oLink2, "_blank");
+            });
+        }
 
 
         // Add hover effects

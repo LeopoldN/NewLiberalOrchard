@@ -1,31 +1,49 @@
 function renderChart() {
 
     // Remove any existing SVG to re-render on resize
-    d3.select("#fExp-container svg").remove();
+    d3.select("#rgdp-container svg").remove();
     d3.select("#tooltip").remove();  // Remove any existing tooltip
 
     // Get the size of the container (it will change on window resize)
-    const container = d3.select("#fExp-container");
+    const container = d3.select("#rgdp-container");
     const containerWidth = container.node().getBoundingClientRect().width;
     const containerHeight = container.node().getBoundingClientRect().height;
 
     // Variables to quick Change names
-    const thisFileName = "/CSV/FGEXPND.json?v=1";
-    const xDomainLow = 3500;
-    const xDomainHigh = 10000;
-    const thisTitle = "US Federal Expenditures (in Billions)";
-    const thisYTitle = "Expenditures (in Billions)";
+    const thisFileName = "/CSV/RGDPPC.json?v=1";
+    const xDomainLow = 50000;
+    const xDomainHigh = 70000;
+    const thisTitle = "US Real GDP per Capita chained 2017";
+    const thisYTitle = "Real GDP $";
     const isStepCurve = false;
-    const toolTipDesc = "Expenditures";
+    const toolTipDesc = "RGDPPC";
     const isDollar = true;
     const isPercentage = false;
-    const jsonX = "fExpend";
+    const jsonX = "rgdp";
+    const strokeColor = "black";
+    const backgroundOpacity = 0.05;
+    const strokeWidth = 3;
 
-    var isTwoVariables = false;
-    var oLink1 ="https://fred.stlouisfed.org/series/W019RCQ027SBEA";
-    var oLink2="";
-    var oLinkName="Federal Expenditures Source";
-    var oLinkName2="";
+    const isTwoVariables = false;
+    const strokeColor2 = "";
+    const thisYTitleRight = "";
+    const toolTipDesc2 = "";
+    const xDomainL2 = 0;
+    const xDomainH2 = 0;
+    const isDollar2 = false;
+    const isPercentage2 = false;
+    const jsonX2 = "";
+
+    var oLink1 = "https://fred.stlouisfed.org/series/A939RX0Q048SBEA";
+    var oLink2 = "";
+    var oLinkName = "RGDP Source";
+    var oLinkName2 = "";
+
+    // Place Icon
+    const isTopL = false;
+    const isTopR = false;
+    const isBotL = false;
+    const isBotR = true;
 
     // Adjust margins based on screen width (smaller for mobile)
     let margin = { top: 100, right: 80, bottom: 50, left: 80 };
@@ -44,14 +62,32 @@ function renderChart() {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
+
+    // Append an image to the chart
+    var locationX =0;
+    var locationY =0;
+    if(isTopL){locationX = 0-10; locationY = 0;}
+    if(isTopR){locationX = (width-margin.right-10); locationY = 0;}
+    if(isBotL){locationX = 0-10; locationY = (height-100);}
+    if(isBotR){locationX = width-margin.right-10; locationY = (height-100);}
+
+    svg.append("image")
+        .attr("xlink:href", "/assets/Logo_black.svg")  // Path to the image file
+        .attr("x", locationX)  // Adjust the x position to place the image as desired
+        .attr("y", locationY)          // Adjust the y position to place the image as desired
+        .attr("width", 100)     // Set the width of the image
+        .attr("height", 100)   // Set the height of the image
+        .attr("opacity", 0.5);  // Set the opacity (50% visible)  
+
     // Adjust font sizes dynamically based on container width
     const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
     const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
     const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
 
+
     // Add source text
     svg.append("text")
-        .attr("x", 10) // Center the text horizontally
+        .attr("x", 0) // Center the text horizontally
         .attr("y", height+40) // Position near the bottom of the SVG
         .attr("text-anchor", "middle") // Align text to center
         .style("font-size", "12px")
@@ -103,14 +139,19 @@ function renderChart() {
             .attr("class", "axis-label")
             .text(thisYTitle);
 
-        // Append an image to the chart
-        svg.append("image")
-        .attr("xlink:href", "/assets/Logo_black.svg")  // Path to the image file
-        .attr("x", width-margin.right-10)  // Adjust the x position to place the image as desired
-        .attr("y", (height-100))          // Adjust the y position to place the image as desired
-        .attr("width", 100)     // Set the width of the image
-        .attr("height", 100)   // Set the height of the image
-        .attr("opacity", 0.5);  // Set the opacity (50% visible)
+        if(isTwoVariables){
+        // Y Axis Label on the Right
+        svg.append("text")
+            .attr("transform", "rotate(90)")
+            .attr("y", (0-width-margin.right+15))
+            .attr("x", height / 2)
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .attr("class", "axis-label")
+            .text(thisYTitleRight);
+        }
+ 
+
 
     const parseTime = d3.timeParse("%Y-%m-%d");
 
@@ -119,6 +160,7 @@ function renderChart() {
         data.forEach(d => {
             d.date = parseTime(d.date);
             d[jsonX] = (d[jsonX]) !== null ? +d[jsonX] : null;
+            d[jsonX2] = (d[jsonX2]) !== null ? +d[jsonX2] : null;
         });
 
         const x = d3.scaleTime()
@@ -128,6 +170,10 @@ function renderChart() {
         const y = d3.scaleLinear()
             .domain([xDomainLow, xDomainHigh])
             .range([height, 0]);
+        
+        const y2 = d3.scaleLinear()
+            .domain([xDomainL2,xDomainH2])
+            .range([height,0]);
 
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
@@ -137,6 +183,12 @@ function renderChart() {
 
         svg.append("g")
             .call(d3.axisLeft(y));
+
+        if(isTwoVariables){
+        svg.append("g")
+            .attr("transform", `translate(${width}, 0)`)  // Move to the right side
+            .call(d3.axisRight(y2));                      // Use axisRight for right-hand side
+        }
 
         // Add gridlines
         const makeXGridlines = () => d3.axisBottom(x).ticks(5);
@@ -157,31 +209,73 @@ function renderChart() {
                 .tickFormat("")
             );            
 
-        const lineCPI = d3.line()
+        const lineX1 = d3.line()
             .x(d => x(d.date))
             .y(d => y(d[jsonX]));
+        const lineX2 = d3.line()
+            .x(d => x(d.date))
+            .y(d => y2(d[jsonX2]));
+            
 
         // Draw lines for each candidate
 
-    if(isStepCurve){
+    if(isStepCurve && isTwoVariables){
         svg.append("path")
             .datum(data)
             .attr("fill", "none")
-            .attr("stroke", "black")
-            .attr("stroke-width", 1.5)
+            .attr("stroke", strokeColor)
+            .attr("stroke-width", strokeWidth)
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("d", d3.line()
             .curve(d3.curveStep)
                 .x(d => x(d.date))
                 .y(d => y(d[jsonX])));
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", strokeColor2)
+            .attr("stroke-width", strokeWidth)
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("d", d3.line()
+            .curve(d3.curveStep)
+                .x(d => x(d.date))
+                .y(d => y2(d[jsonX2])));
+    }else if(isStepCurve && !isTwoVariables){
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", strokeColor)
+            .attr("stroke-width", strokeWidth)
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("d", d3.line()
+            .curve(d3.curveStep)
+                .x(d => x(d.date))
+                .y(d => y(d[jsonX])));
+    }else if(!isStepCurve && isTwoVariables){
+        svg.append("path")
+            .datum(data)
+            .attr("class", "line Var 1")
+            .attr("d", lineX1)
+            .attr("stroke", strokeColor)
+            .attr("stroke-width", strokeWidth)
+            .attr("fill", "none");
+        svg.append("path")
+            .datum(data)
+            .attr("class", "Line Var 2")
+            .attr("d", lineX2)
+            .attr("stroke", strokeColor2)
+            .attr("stroke-width", strokeWidth)
+            .attr("fill", "none");
     }else{
         svg.append("path")
             .datum(data)
-            .attr("class", "line CPI")
-            .attr("d", lineCPI)
-            .attr("stroke", "black")
-            .attr("stroke-width", 2)
+            .attr("class", "line Var 1")
+            .attr("d", lineX1)
+            .attr("stroke", strokeColor)
+            .attr("stroke-width", strokeWidth)
             .attr("fill", "none");
     }
         // Add candidate labels on the right side
@@ -201,6 +295,7 @@ function renderChart() {
         const eventDates = [
             {date: "2013-01-01", label: "Obama Elected"},
             {date: "2017-01-01", label: "Trump Elected"}
+            //{date: "2021-01-01", label: "Biden Elected"}
         ];
 
         // Parse event dates and add event lines
@@ -208,7 +303,7 @@ function renderChart() {
             const eventDate = parseTime(event.date);
             let shift = 0;
             if(index ==1) {shift =-15
-            }else if(index==2) {shift=45};
+            }else if(index==2) {}
 
             // Add the vertical line for the event
             svg.append("line")
@@ -231,26 +326,28 @@ function renderChart() {
         });
 
         // Parse the first event date (Obama elected)
-        const ObamaDate = new Date(eventDates[1].date);
+        const TrumpDate = new Date(eventDates[1].date);
+        const BidenDate = new Date("2021-01-01");
 
         // Get the x-coordinate for the Obama date
-        const ObamaX = x(ObamaDate);
+        const TrumpX = x(TrumpDate);
+        const BidenX = x(BidenDate)-x(TrumpDate);
 
         // Add the red rectangle with 50% opacity
         svg.append("rect")
         .attr("x", 0)                          // Start from the left side
         .attr("y", 0)                          // Top of the chart
-        .attr("width", ObamaX)               // Width goes to the Kennedy date
+        .attr("width", TrumpX)               // Width goes to the Kennedy date
         .attr("height", height)                // Full height of the chart
         .style("fill", "blue")                  // Set the color to red
-        .style("opacity", 0.05);                // 50% opacity
+        .style("opacity", backgroundOpacity);                // 50% opacity
         svg.append("rect")
-        .attr("x", ObamaX)                          // Start from the left side
+        .attr("x", TrumpX)                          // Start from the left side
         .attr("y", 0)                          // Top of the chart
-        .attr("width", width/2)               // Width goes to the Kennedy date
+        .attr("width", BidenX)               // Width goes to the Kennedy date
         .attr("height", height)                // Full height of the chart
         .style("fill", "red")                  // Set the color to red
-        .style("opacity", 0.05);                // 50% opacity
+        .style("opacity", backgroundOpacity);                // 50% opacity
 
 
         // Add hover effects
@@ -305,8 +402,9 @@ function renderChart() {
                     .style("top", (event.pageY - 30) + "px") // Adjust to show above the mouse
                     .style("display", "inline-block")
                     .html(`
-                        <strong>Date:</strong> ${d3.timeFormat("%B %d, %Y")(d.date)}<br/>
-                        <strong>${toolTipDesc}:</strong> ${isDollar ? '$' : ''}${d[jsonX]}${isPercentage ? '%' : ''}<br/>`
+                        <strong">Date:</strong> ${d3.timeFormat("%B %d, %Y")(d.date)}<br/>
+                        <strong><font color=${strokeColor}>${toolTipDesc}</font>:</strong> ${isDollar ? '$' : ''}${isDollar ? (d[jsonX]).toLocaleString() : d[jsonX]}${isPercentage ? '%' : ''}<br/>
+                        ${isTwoVariables ? `<strong><font color=${strokeColor2}>${toolTipDesc2}</font>:</strong> ${isDollar2 ? '$' : ''}${isDollar2 ? d[jsonX2].toLocaleString() : d[jsonX2].toFixed(2)}${isPercentage2 ? '%' : ''}<br/>` : ''}`
                     );
             })            
             .on("mouseout", () => {

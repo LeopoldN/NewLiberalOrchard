@@ -1,14 +1,14 @@
 {
     "articles": [
         {
-            "title": "Liberal Orchard Essays: Populist Poison",
-            "description": "An editorial essay on the poisons of populism",
+            "title": "Donald Detox",
+            "description": "Liberal Orchard's Guide to getting over Trump",
             "author": "Liberal Orchard",
-            "date": "September 2024",
-            "views": "4",
+            "date": "October 2024",
+            "views": "6",
             "topics": "economics,politics,biden",
-            "url": "./populist-poison.html",
-            "image": "./assets/Article%20Photos/Liberal.webp",
+            "url": "./Donald-Detox.html",
+            "image": "./assets/Article%20Photos/donalddetox.webp",
             "altText": "Burst gradient of blue into black with the words Liberal Orchard The poison of populism written in the middle with a matrix behind it"
         },
         {

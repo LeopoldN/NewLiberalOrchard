@@ -11,8 +11,8 @@ function renderChart() {
 
     // Variables to quick Change names
     const thisFileName = "/CSV/FGTAXRECEIPTS.json?v=1";
-    const xDomainLow = 1500;
-    const xDomainHigh = 3000;
+    const xDomainLow = 3000;
+    const xDomainHigh = 5000;
     const thisTitle = "US Federal Tax Revenue (in Billions)";
     const thisYTitle = "Revenue (in Billions)";
     const isStepCurve = false;
@@ -42,6 +42,40 @@ function renderChart() {
     const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
     const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
     const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
+
+    var isTwoVariables=false;
+    var oLink1="https://fred.stlouisfed.org/series/W018RC1Q027SBEA";
+    var oLink2="";
+    var oLinkName="Total Federal Receipts Source";
+    var oLinkName2="";
+
+    // Add source text
+    svg.append("text")
+        .attr("x", +50) // Center the text horizontally
+        .attr("y", height+40) // Position near the bottom of the SVG
+        .attr("text-anchor", "middle") // Align text to center
+        .style("font-size", "12px")
+        .style("fill", "#000")
+        .style("cursor", "pointer")
+        .text(oLinkName)
+        .on("click", function() {
+        // Redirect to the sources page when clicked
+        window.open(oLink1, "_blank");
+        });
+    if(isTwoVariables){
+    svg.append("text")
+        .attr("x", 0) // Center the text horizontally
+        .attr("y", height+40) // Position near the bottom of the SVG
+        .attr("text-anchor", "middle") // Align text to center
+        .style("font-size", "12px")
+        .style("fill", "#000")
+        .style("cursor", "pointer")
+        .text(oLinkName2)
+        .on("click", function() {
+        // Redirect to the sources page when clicked
+        window.open(oLink2, "_blank");
+        });
+    }
 
     // Add the title
     svg.append("text")

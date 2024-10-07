@@ -13,7 +13,7 @@ function renderChart() {
     const thisFileName = "/CSV/RealMedianHousehold.json?v=1";
     const xDomainLow = 65000;
     const xDomainHigh = 85000;
-    const thisTitle = "Real Median Household Income";
+    const thisTitle = "Real Median Household Income chained 2023";
     const thisYTitle = "Real Median Income $";
     const isStepCurve = false;
     const toolTipDesc = "Income";
@@ -33,6 +33,11 @@ function renderChart() {
     const isDollar2 = false;
     const isPercentage2 = false;
     const jsonX2 = "";
+
+    var oLink1 = "https://fred.stlouisfed.org/series/MEHOINUSA672N";
+    var oLink2 = "";
+    var oLinkName = "Income Source";
+    var oLinkName2 = "";
 
     // Place Icon
     const isTopL = false;
@@ -78,6 +83,34 @@ function renderChart() {
     const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
     const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
     const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
+
+    // Add source text
+    svg.append("text")
+        .attr("x", 0) // Center the text horizontally
+        .attr("y", height+40) // Position near the bottom of the SVG
+        .attr("text-anchor", "middle") // Align text to center
+        .style("font-size", "12px")
+        .style("fill", "#000")
+        .style("cursor", "pointer")
+        .text(oLinkName)
+        .on("click", function() {
+        // Redirect to the sources page when clicked
+        window.open(oLink1, "_blank");
+        });
+    if(isTwoVariables){
+    svg.append("text")
+        .attr("x", 0) // Center the text horizontally
+        .attr("y", height+40) // Position near the bottom of the SVG
+        .attr("text-anchor", "middle") // Align text to center
+        .style("font-size", "12px")
+        .style("fill", "#000")
+        .style("cursor", "pointer")
+        .text(oLinkName2)
+        .on("click", function() {
+        // Redirect to the sources page when clicked
+        window.open(oLink2, "_blank");
+        });
+    }
 
     // Add the title
     svg.append("text")

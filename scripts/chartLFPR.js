@@ -12,8 +12,8 @@ function renderChart() {
     // Variables to quick Change names
     const thisFileName = "/CSV/LFPR-PR.json?v=1";
     const xDomainLow = 75;
-    const xDomainHigh = 90;
-    const thisTitle = "US Prime Age Labor Force Participatio Rate (25-55yrs)";
+    const xDomainHigh = 85;
+    const thisTitle = "US Prime Age Labor Force Participatio Rate (25-54yrs)";
     const thisYTitle = "Prime Age LFPR %";
     const isStepCurve = false;
     const toolTipDesc = "LFPR";
@@ -39,6 +39,12 @@ function renderChart() {
     const isTopR = false;
     const isBotL = false;
     const isBotR = true;
+
+    // Adding Info
+    const oLink1 = "https://fred.stlouisfed.org/series/LNS11300060";
+    const oLink2 = "";
+    const oLinkName = "LFPR source";
+    const oLinkName2 = "";
 
     // Adjust margins based on screen width (smaller for mobile)
     let margin = { top: 100, right: 80, bottom: 50, left: 80 };
@@ -78,6 +84,34 @@ function renderChart() {
     const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
     const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
     const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
+
+    // Add source text
+    svg.append("text")
+        .attr("x", 0) // Center the text horizontally
+        .attr("y", height+40) // Position near the bottom of the SVG
+        .attr("text-anchor", "middle") // Align text to center
+        .style("font-size", "12px")
+        .style("fill", "#000")
+        .style("cursor", "pointer")
+        .text(oLinkName)
+        .on("click", function() {
+        // Redirect to the sources page when clicked
+        window.open(oLink1, "_blank");
+        });
+    if(isTwoVariables){
+    svg.append("text")
+        .attr("x", 0) // Center the text horizontally
+        .attr("y", height+40) // Position near the bottom of the SVG
+        .attr("text-anchor", "middle") // Align text to center
+        .style("font-size", "12px")
+        .style("fill", "#000")
+        .style("cursor", "pointer")
+        .text(oLinkName2)
+        .on("click", function() {
+        // Redirect to the sources page when clicked
+        window.open(oLink2, "_blank");
+        });
+    }
 
     // Add the title
     svg.append("text")
