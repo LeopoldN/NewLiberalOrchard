@@ -1,50 +1,49 @@
 function renderChart() {
 
     // Remove any existing SVG to re-render on resize
-    d3.select("#debts-container svg").remove();
+    d3.select("#unchart-container svg").remove();
     d3.select("#tooltip").remove();  // Remove any existing tooltip
 
     // Get the size of the container (it will change on window resize)
-    const container = d3.select("#debts-container");
+    const container = d3.select("#unchart-container");
     const containerWidth = container.node().getBoundingClientRect().width;
     const containerHeight = container.node().getBoundingClientRect().height;
 
     // Variables to quick Change names
-    const thisFileName = "/CSV/TotalDebt.json?v=1";
-    const xDomainLow = 16000;
-    const xDomainHigh = 30000;
-    const thisTitle = "Total US Public Debt (in Billions)";
-    const thisYTitle = "Total US Debt (in Billions)";
+    const thisFileName = "/CSV/employmentLevel.json?v=1";
+    const xDomainLow = 130000;
+    const xDomainHigh = 160000;
+    const thisTitle = "US Total Employment (in '000s)";
+    const thisYTitle = "Employment in hundreds of thousands";
     const isStepCurve = false;
-    const toolTipDesc = "Debt";
-    const isDollar = true;
+    const toolTipDesc = "Employment";
+    const isDollar = false;
     const isPercentage = false;
-    const jsonX = "debt";
-    const strokeColor = "red";
+    const jsonX = "ulevel";
+    const strokeColor = "black";
     const backgroundOpacity = 0.05;
     const strokeWidth = 3;
 
-    const isTwoVariables = true;
-    const strokeColor2 = "grey";
-    const thisYTitleRight = "Debt to GDP ratio";
-    const toolTipDesc2 = "Ratio";
-    const xDomainL2 = 95;
-    const xDomainH2 = 150;
+    const isTwoVariables = false;
+    const strokeColor2 = "gray";
+    const thisYTitleRight = "Budget Deficit % GDP";
+    const toolTipDesc2 = "Deficit/GDP";
+    const xDomainL2 = 0;
+    const xDomainH2 = 15;
     const isDollar2 = false;
     const isPercentage2 = true;
-    const jsonX2 = "debtGDP";
+    const jsonX2 = "defper";
 
-    var oLink1="https://fred.stlouisfed.org/series/GFDEBTN";
-    var oLink2="https://fred.stlouisfed.org/series/GFDEGDQ188S";
-    var oLinkName="Total Debt Source";
-    var oLinkName2="Debt Percentage Source";
-    // need to change location LMAO
+    var oLink1 = "https://fred.stlouisfed.org/series/CE16OV";
+    var oLink2 = "https://fred.stlouisfed.org/series/FYFSGDA188S";
+    var oLinkName = "Employment Source";
+    var oLinkName2 = "Percent of GDP Source";
 
     // Place Icon
     const isTopL = false;
     const isTopR = false;
-    const isBotL = false;
-    const isBotR = true;
+    const isBotL = true;
+    const isBotR = false;
 
     // Adjust margins based on screen width (smaller for mobile)
     let margin = { top: 100, right: 80, bottom: 50, left: 80 };
@@ -132,7 +131,7 @@ function renderChart() {
         // Y Axis Label
         svg.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left + 15)
+            .attr("y", 0 - margin.left)
             .attr("x", 0 - height / 2)
             .attr("dy", "1em")
             .style("text-anchor", "middle")
@@ -211,7 +210,7 @@ function renderChart() {
 
         const lineX1 = d3.line()
             .x(d => x(d.date))
-            .y(d => y((d[jsonX]/1000)));
+            .y(d => y(d[jsonX]));
         const lineX2 = d3.line()
             .x(d => x(d.date))
             .y(d => y2(d[jsonX2]));
@@ -295,6 +294,7 @@ function renderChart() {
         const eventDates = [
             {date: "2013-01-01", label: "Obama Elected"},
             {date: "2017-01-01", label: "Trump Elected"}
+            //{date: "2021-01-01", label: "Biden Elected"}
         ];
 
         // Parse event dates and add event lines
@@ -302,7 +302,7 @@ function renderChart() {
             const eventDate = parseTime(event.date);
             let shift = 0;
             if(index ==1) {shift =-15
-            }else if(index==2) {shift=45};
+            }else if(index==2) {}
 
             // Add the vertical line for the event
             svg.append("line")
@@ -325,23 +325,25 @@ function renderChart() {
         });
 
         // Parse the first event date (Obama elected)
-        const ObamaDate = new Date(eventDates[1].date);
+        const TrumpDate = new Date(eventDates[1].date);
+        const BidenDate = new Date("2021-01-01");
 
         // Get the x-coordinate for the Obama date
-        const ObamaX = x(ObamaDate);
+        const TrumpX = x(TrumpDate);
+        const BidenX = x(BidenDate)-x(TrumpDate);
 
         // Add the red rectangle with 50% opacity
         svg.append("rect")
         .attr("x", 0)                          // Start from the left side
         .attr("y", 0)                          // Top of the chart
-        .attr("width", ObamaX)               // Width goes to the Kennedy date
+        .attr("width", TrumpX)               // Width goes to the Kennedy date
         .attr("height", height)                // Full height of the chart
         .style("fill", "blue")                  // Set the color to red
         .style("opacity", backgroundOpacity);                // 50% opacity
         svg.append("rect")
-        .attr("x", ObamaX)                          // Start from the left side
+        .attr("x", TrumpX)                          // Start from the left side
         .attr("y", 0)                          // Top of the chart
-        .attr("width", width/2)               // Width goes to the Kennedy date
+        .attr("width", BidenX)               // Width goes to the Kennedy date
         .attr("height", height)                // Full height of the chart
         .style("fill", "red")                  // Set the color to red
         .style("opacity", backgroundOpacity);                // 50% opacity
@@ -400,7 +402,7 @@ function renderChart() {
                     .style("display", "inline-block")
                     .html(`
                         <strong">Date:</strong> ${d3.timeFormat("%B %d, %Y")(d.date)}<br/>
-                        <strong><font color=${strokeColor}>${toolTipDesc}</font>:</strong> ${isDollar ? '$' : ''}${isDollar ? (d[jsonX]/1000).toLocaleString() : d[jsonX]}${isPercentage ? '%' : ''}<br/>
+                        <strong><font color=${strokeColor}>${toolTipDesc}</font>:</strong> ${isDollar ? '$' : ''}${isDollar ? (d[jsonX]).toLocaleString() : d[jsonX]}${isPercentage ? '%' : ''}<br/>
                         ${isTwoVariables ? `<strong><font color=${strokeColor2}>${toolTipDesc2}</font>:</strong> ${isDollar2 ? '$' : ''}${isDollar2 ? d[jsonX2].toLocaleString() : d[jsonX2].toFixed(2)}${isPercentage2 ? '%' : ''}<br/>` : ''}`
                     );
             })            

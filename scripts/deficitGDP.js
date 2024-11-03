@@ -1,11 +1,11 @@
 function renderChart() {
 
     // Remove any existing SVG to re-render on resize
-    d3.select("#trade-container svg").remove();
+    d3.select("#deficitGDP-container svg").remove();
     d3.select("#tooltip").remove();  // Remove any existing tooltip
 
     // Get the size of the container (it will change on window resize)
-    const container = d3.select("#trade-container");
+    const container = d3.select("#deficitGDP-container");
     const containerWidth = container.node().getBoundingClientRect().width;
     const containerHeight = container.node().getBoundingClientRect().height;
 
