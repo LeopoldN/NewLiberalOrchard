@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@liberalorchard">
+<meta name="twitter:url" content="http://www.liberalorchard.com/bidenomics-a-monthly-review-nov-2024.html">
+<meta name="twitter:title" content="Bidenomics: A monthly review of the Economy - Liberal Orchard">
+<meta name="twitter:description" content="Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP">
+<meta name="twitter:image" content="https://liberalorchard.com/assets/Article%20Photos/Trumponomics1.webp">
+<meta name="twitter:image:alt" content="President Biden with aviator glasses that have dollar signs over the lenses. There is text that says Bidenomics over his mouth with a white square background. In the bottom left corner it states June Edition 2023 - Liberal Orchard. The background is blue.">
+<!--Twitter Information-->     
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="Bidenomics: A monthly review of the Economy - Liberal Orchard">
+<meta name="description" content="Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP">
+<link rel="icon" type="image/x-icon" href="/assets/Logo_white.svg">    
+
+<title>Bidenomics: A monthly review of the Economy - Liberal Orchard</title>
+<link rel="stylesheet" href="./stylesheets/standard.css?v=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('.copy-shares').addEventListener('click', function(event) {
+        event.preventDefault();
+        const linkToCopy = this.href;
+  
+        navigator.clipboard.writeText(linkToCopy)
+          .then(function() {
+            // Show tooltip
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.visibility = 'visible';
+  
+            // Hide tooltip after 2 seconds
+            setTimeout(function() {
+              tooltip.style.visibility = 'hidden';
+            }, 2000);
+          })
+          .catch(function(err) {
+            console.error('Could not copy text: ', err);
+          });
+      });
+    });
+  </script>
+    <script src="readtime.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+    <style>
+        .toc-container {
+            width: 250px;
+        }
+        .toc-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+
+        .overview-table th, .overview-table td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+        }
+
+        .overview-table th {
+            background-color: #607d8b; /* Dark grey-blue for header */
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .overview-table .title-row th {
+            background-color: #3e4a52; /* Slightly darker for main title */
+            font-size: 1.2em;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .overview-table .data-point {
+            background-color: #FFF1E5;
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+            border-right: 1px solid #000;
+        }
+
+        .overview-table td {
+            text-align: center;
+            color: #333;
+            border-right: 1px solid #000;
+        }
+
+        /* Alternate row colors for better readability */
+        .overview-table tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        /* Add subtle hover effect for rows */
+        .overview-table tr:hover td {
+            background-color: #e0e0e0;
+        }
+
+        /* Rounded corners for the entire table */
+        .w3-card-4 {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+<body>
+	
+	<!-- NAVIGATION TOP BAR -->
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="LiberalOrchard" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+	<div class="w3-bar w3-border-bottom" style="display: flex; align-items: center; justify-content: space-between;">
+		<!-- Left-side Logo and Text -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./index.html" class="w3-bar-item w3-left">
+			<img class="logo" src="./assets/Logo_black.svg" alt="Logo">
+		  </a>
+		  <a href="./index.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge w3-large">
+			<span class="hide">Liberal Orchard</span> 
+		  </a>
+		</div>
+		
+		<!-- Right-side Icons and About -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./about.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge">
+			About
+		  </a>
+		  <a href="http://www.liberal.cafe" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+			<img class="icon" src="./assets/mug-saucer-solid.svg" alt="Mug icon">
+		  </a>
+		  <a href="https://www.x.com/LiberalOrchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+			<img class="icon" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon">
+		  </a>
+		</div>
+	  </div>
+
+	
+	<div class="w3-row w3-padding w3-margin"></div>	
+
+	
+	<!-- article -->
+	<div class="w3-container center-container w3-margin-bottom">
+        <div class="w3-container article-width">
+        <h1 class="smalltexth1"><b>Bidenomics: a monthly review of the economy</b></h1>
+        <h3 class="w3-margin-bottom smalltexth3">Liberal Orchard's monthly recap of key economic indicators like Inflation, Consumer Debt, and GDP</h3>
+        <img class="w3-image w3-round-large" src="./assets/Article Photos/Trumponomics1.webp"></img>
+            
+        <p class="w3-text-grey w3-opacity-min w3-margin-top w3-margin-bottom smalltexth3">By <a href="https://liberalorchard.com/bio-nicholas-leopold.html" target="_blank">Nicholas Leopold</a> | November 6th 2024</p>
+
+            <div class="w3-bar w3-border-bottom w3-margin-bottom articleshares">
+                <div style="display: flex; align-items: center;">
+                <p class="w3-bar-item smalltexth3" style="padding-left: 0px; margin-left: 0;" id="readingtime"></p>
+                </div>
+                <div style="display: flex; align-items: center;">
+                <a href="https://twitter.com/intent/tweet?url=http://www.liberalorchard.com/bidenomics-a-monthly-review-nov-2024.html&text=I really enjoyed this article from @LiberalOrchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme w3-right">
+                    <img width="32px" height="32px" src="./assets/square-twitter-brands-solid.svg" alt="Twitter icon">
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.liberalorchard.com/bidenomics-a-monthly-review-nov-2024.html&t=I really enjoyed this article from Liberal Orchard" target="_blank" class="w3-bar-item w3-button w3-hover-theme w3-right">
+                    <img width="32px" height="32px" src="./assets/square-facebook-brands-solid.svg" alt="Facebook icon">
+                </a>
+                <a href="http://www.liberalorchard.com/bidenomics-a-monthly-review-nov-2024.html" class="w3-bar-item w3-button w3-hover-theme w3-right copy-shares">
+                    <img width="32px" height="32px" src="./assets/clipboard-regular.svg" alt="Clipboard share icon">
+                    <span id="tooltip" style="visibility: hidden; position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, 100%); background-color: #000; color: #fff; padding-bottom: 5px; border-radius: 5px;">Link copied!</span>
+                </a>
+                </div>
+            </div>
+
+            <!-- Start -->
+            <div class="w3-cell-row w3-padding">
+                <!-- Table of Contents Section -->
+                <div class="w3-cell w3-third w3-card w3-border w3-round toc-container">
+                    <div class="toc-title w3-padding w3-center">Contents</div>
+                    <ul class="w3-ul">
+                        <li><a href="#top" class="toc-link">Top</a></li>
+                        <li>
+                            <button onclick="toggleSection('conprice')" class="w3-button w3-block w3-left-align">Consumer Prices</button>
+                            <ul id="conprice" class="w3-ul w3-hide">
+                                <li><a href="#egg" class="toc-link">Eggs</a></li>
+                                <li><a href="#milk" class="toc-link">Milk</a></li>
+                                <li><a href="#bread" class="toc-link">Bread</a></li>
+                                <li><a href="#meat" class="toc-link">Meat</a></li>
+                                <li><a href="#stock" class="toc-link">Stock Market</a></li>
+                                <li><a href="#gas" class="toc-link">Gas</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button onclick="toggleSection('econ')" class="w3-button w3-block w3-left-align">Economic Data</button>
+                            <ul id="econ" class="w3-ul w3-hide">
+                                <li><a href="#rgdp" class="toc-link">Real GDP</a></li>
+                                <li><a href="#rmanu" class="toc-link">Real Manufacturing</a></li>
+                                <li><a href="#cpi" class="toc-link">CPI</a></li>
+                                <li><a href="#oil" class="toc-link">Oil Data</a></li>
+                                <li><a href="#housing" class="toc-link">Housing Data</a></li>
+                                <li><a href="#rwage" class="toc-link">Real Wages</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button onclick="toggleSection('jobs')" class="w3-button w3-block w3-left-align">Jobs Data</button>
+                            <ul id="jobs" class="w3-ul w3-hide">
+                                <li><a href="#employ" class="toc-link">Total Employment</a></li>
+                                <li><a href="#industry" class="toc-link">Industry Employment</a></li>
+                                <li><a href="#labor" class="toc-link">Laborforce Participation</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button onclick="toggleSection('fiscal')" class="w3-button w3-block w3-left-align">Fiscal Policy</button>
+                            <ul id="fiscal" class="w3-ul w3-hide">
+                                <li><a href="#tax" class="toc-link">Average Tax Rate</a></li>
+                                <li><a href="#tariff" class="toc-link">Cost of Tariffs</a></li>
+                                <li><a href="#debt" class="toc-link">Total debt</a></li>
+                                <li><a href="#deficit" class="toc-link">Deficit</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button onclick="toggleSection('monetary')" class="w3-button w3-block w3-left-align">Monetary Policy</button>
+                            <ul id="monetary" class="w3-ul w3-hide">
+                                <li><a href="#ffr" class="toc-link">Federal Funds Rate</a></li>
+                                <li><a href="#ms" class="toc-link">Money Supply</a></li>
+                                <li><a href="#exr" class="toc-link">Exchange Rate</a></li>                            </ul>
+                        </li>
+                        <li><a href="#overview" class="toc-link">Quick Overview</a></li>                        
+                    </ul>
+                </div>
+            
+                <!-- Article Text Section -->
+                <div class="w3-cell w3-twothird w3-padding">
+                    <p class="articletext">
+                        It's November 6th and Donald Trump just got elected. We're going to recalibrate for the upcoming Trump Administration to highlight exactly why people were voting for him. (Hope you enjoy the new Artilce Photo) Therefore, the monthly review is getting an update as well as a change in topics, which include:<br/><br/>
+                        <b>Consumer Prices:</b> We're gonna focus on Egg, Milk, Bread, Meat, stock market, and gasoline prices. <br/>
+                        <b>Economic Data:</b> Real GDP per Capita, Real Manufacturing Investment, CPI, oil output, housing data, and real wage data breakdown.<br/>
+                        <b>Jobs Data:</b> Total Employment, Employment by Industry, and Laborforce Participation Rate.<br/>
+                        <b>Fiscal Policy:</b> Average Effective Tax Rate, Cost of Tariffs, Total Debt, and Deficit.<br/>
+                        <b>Monetary Policy:</b> Federal Funds Rate, Money Supply, and Exchange Rate <br/>
+                        <b>Quick Overview:</b> A nice table that overviews all the data we've gone over. <br/>
+                    </p>
+                </div>
+            </div>
+            
+            <script>
+                function toggleSection(id) {
+                    const section = document.getElementById(id);
+                    if (section.classList.contains('w3-hide')) {
+                        section.classList.remove('w3-hide');
+                    } else {
+                        section.classList.add('w3-hide');
+                    }
+                }
+            </script>
+
+            <!-- Consumer Prices -->
+        <div style="box-shadow: 0 4px 80px rgba(0, 0, 0, 0.2);       margin: auto;
+        padding: 16px;
+        background-color: #FFF1E5;
+        box-shadow: 0 4px 80px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;">
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="egg">Consumer Prices: Eggs</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="eggsD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartEggs.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="milk">Consumer Prices: Milk</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="milkD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartMilk.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="bread">Consumer Prices: Bread</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="breadD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartBread.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="meat">Consumer Prices: Meat</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="meatD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartMeat.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="stock">Consumer Prices: Stocks</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="stockD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartStocks.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="gas">Consumer Prices: Gas Prices</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="gasD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartGas.js"></script>
+
+            <p class="articletext">
+            </p>
+
+
+
+
+            <!-- Economic -->
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="rgdp">Economics Data: Real GDP</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="rgdpD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/rGDPchart.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="rmanu">Economic Data: Real Manufacturing Investment</h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="rmanuD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartRManu.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="cpi">Economic Data: CPI </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="cpiD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartInflation.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="oil">Economic Data: Oil Production </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="oilD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartOil.js"></script>
+
+            <p class="articletext">
+            </p>
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="housing">Economic Data: Housing Data </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="housingD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartHousing.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="rwage">Economic Data: Real Wage </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="rwageD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartRWage.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <!-- Jobs Data -->
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="employ">Jobs Data: Total Employment </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="employD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartEmployment.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="industry">Jobs Data: Employment by Industry </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="industryD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartIndustry.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="labor">Jobs Data: Laborforce Participation Rate </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="laborD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartLFPRPA.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <!-- Fiscal Policy -->
+          
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="tax">Fiscal Policy: Tax </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="taxD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartTax.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="tariff">Fiscal Policy: Tariff </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="tariffD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartTariff.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="debt">Fiscal Policy: Total Debt </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="debtD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartDebtTotal.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="deficit">Fiscal Policy: Deficit </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="deficitD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartFPDeficit.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <!-- Monetary Policy -->
+        
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="ffr">Monetary Policy: Federal Funds Rate </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="ffrD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartFFR.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="ms">Monetary Policy: Money Supply </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="msD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartMS.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <h2 class="w3-margin-top w3-margin-bottom w3-border-bottom" id="exr">Monetary Policy: Exchange Rates </h2>
+            <p class="articletext">
+            </p> 
+
+            <div id="exrD" style="width: 100%; height: 500px;"></div>
+            <script src="/Trumponomics/chartEXR.js"></script>
+
+            <p class="articletext">
+            </p>
+
+            <div class="w3-card-4 w3-margin" id="overview">
+                <table class="w3-table overview-table">
+                    <tr class="title-row">
+                        <th colspan="5">Overview of Prices</th>
+                    </tr>
+                    <tr>
+                        <th>Data Point</th>
+                        <th>Current Month</th>
+                        <th>Last Month</th>
+                        <th>3 Month Trend</th>
+                        <th>1 Year Trend</th>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Eggs</td>
+                        <td>0.50%</td>
+                        <td>0.25%</td>
+                        <td>1%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Milk</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Bread</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Meat</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Stock</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Gas</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-card-4 w3-margin" id="">
+                <table class="w3-table overview-table">
+                    <tr class="title-row">
+                        <th colspan="5">Overview of Economy</th>
+                    </tr>
+                    <tr>
+                        <th>Data Point</th>
+                        <th>Current Month</th>
+                        <th>Last Month</th>
+                        <th>3 Month Trend</th>
+                        <th>1 Year Trend</th>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Real GDP</td>
+                        <td>0.50%</td>
+                        <td>0.25%</td>
+                        <td>1%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Real Manufacturing</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">CPI</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Oil Data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Housing Data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Real Wages</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-card-4 w3-margin" id="">
+                <table class="w3-table overview-table">
+                    <tr class="title-row">
+                        <th colspan="5">Overview of Jobs Data</th>
+                    </tr>
+                    <tr>
+                        <th>Data Point</th>
+                        <th>Current Month</th>
+                        <th>Last Month</th>
+                        <th>3 Month Trend</th>
+                        <th>1 Year Trend</th>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Total Employment</td>
+                        <td>0.50%</td>
+                        <td>0.25%</td>
+                        <td>1%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Manufacturing Employment</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Services Employment</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">I&T Employment</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Other Employment</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Laborforce Participation (PA)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-card-4 w3-margin" id="">
+                <table class="w3-table overview-table">
+                    <tr class="title-row">
+                        <th colspan="5">Overview of Fiscal Policy</th>
+                    </tr>
+                    <tr>
+                        <th>Data Point</th>
+                        <th>Current Month</th>
+                        <th>Last Month</th>
+                        <th>3 Month Trend</th>
+                        <th>1 Year Trend</th>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Cost Of Tariffs</td>
+                        <td>0.50%</td>
+                        <td>0.25%</td>
+                        <td>1%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Total Debt</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Deficit</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-card-4 w3-margin" id="">
+                <table class="w3-table overview-table">
+                    <tr class="title-row">
+                        <th colspan="5">Overview of Monetary Policy</th>
+                    </tr>
+                    <tr>
+                        <th>Data Point</th>
+                        <th>Current Month</th>
+                        <th>Last Month</th>
+                        <th>3 Month Trend</th>
+                        <th>1 Year Trend</th>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Federal Funds Rate</td>
+                        <td>0.50%</td>
+                        <td>0.25%</td>
+                        <td>1%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Money Supply</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Exchange Rate</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Meat</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Stock</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="data-point">Gas</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+                                                     <!-- Disqus Universal Code -->
+                                                     <div class = "disqus-width" id="disqus_thread"></div>
+                                                     <script>
+                                                     (function() { // DON'T EDIT BELOW THIS LINE
+                                                     var d = document, s = d.createElement('script');
+                                                     s.src = 'https://liberalorchard.disqus.com/embed.js';
+                                                     s.setAttribute('data-timestamp', +new Date());
+                                                     (d.head || d.body).appendChild(s);
+                                                     })();
+                                                     </script>
+                                                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                   <!-- End of Disqus Universal Code --> 
+
+        </div>
+	</div>
+
+  
+
+  <div class="w3-container w3-black w3-padding" style="width: 100%;">
+		<p class="w3-center">@LiberalOrchard</p>
+	</div>
+
+</body>
+</html>
