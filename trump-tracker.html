@@ -14,7 +14,7 @@
 <meta name="twitter:image:alt" content="The Liberal Orchard logo">
 <link rel="icon" type="image/x-icon" href="/assets/Logo_white.svg">    
 
-<title>Author - Nicholas Leopold</title>
+<title>Trump Tracker</title>
 <link rel="stylesheet" href="./stylesheets/standard.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -44,6 +44,60 @@
       grid-template-columns: auto auto;
       gap: 5px;
     }
+        /* Rounded corners for the entire table */
+    .w3-card-4 {
+    overflow: hidden;
+    border-radius: 8px;
+    }
+    .overview-table1 {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.overview-table1 th, .overview-table1 td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.overview-table1 th {
+  background-color: maroon; /* Dark grey-blue for header */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.overview-table1 .title-row1 th {
+  background-color: maroon; /* Slightly darker for main title */
+  font-size: 1.2em;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.overview-table1 .data-point1 {
+  background-color: #FFF1E5;
+  color: #333;
+  font-weight: bold;
+  text-align: left;
+  border-right: 1px solid #000;
+}
+
+.overview-table1 td {
+  text-align: center;
+  color: #333;
+  border-right: 1px solid #000;
+}
+
+/* Alternate row colors for better readability */
+.overview-table1 tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+/* Add subtle hover effect for rows */
+.overview-table1 tr:hover td {
+  background-color: #e0e0e0;
+}
   </style>
 
 </head>
@@ -76,98 +130,249 @@
 		</div>
 	  </div>
 
-	
-      <div class=" w3-padding chart-container">
-        <!-- First Column -->
-        <div>
-          <!-- Executive Section -->
-          <div class="chart-section">
-            <div class="chart-header">EXECUTIVE</div>
-            <div class="chart-grid">
-              <div>POTUS</div><div>Donald J. Trump</div>
-              <div>VPOTUS</div><div>JD Vance</div>
-            </div>
-          </div>
-      
-          <!-- White House Staff Section -->
-          <div class="chart-section">
-            <div class="chart-header">WHITE HOUSE STAFF</div>
-            <div class="chart-grid">
-              <div>CHIEF OF STAFF</div><div>Susie Wiles</div>
-              <div>DEPUTY CHIEF OF STAFF</div><div>Stephen Miller</div>
-              <div>PRESS SECRETARY</div><div></div>
-              <div>DEPUTY PRESS SECRETARY</div><div></div>
-            </div>
-          </div>
-      
-          <!-- Cabinet Section -->
-          <div class="chart-section">
-            <div class="chart-header">CABINET</div>
-            <div class="chart-grid">
-              <div>AGRICULTURE</div><div></div>
-              <div>COMMERCE</div><div></div>
-              <div>DEFENSE</div><div></div>
-              <div>EDUCATION</div><div></div>
-              <div>ENERGY</div><div></div>
-              <div>HEALTH HUMAN SERVICES</div><div></div>
-              <div>HOMELAND SECURITY</div><div></div>
-              <div>HOME URBAN DEVELOPMENT</div><div></div>
-              <div>INTERIOR</div><div></div>
-              <div>JUSTICE</div><div></div>
-              <div>LABOR</div><div></div>
-              <div>STATE</div><div></div>
-              <div>TRANSPORTATION</div><div></div>
-              <div>TREASURY</div><div></div>
-              <div>VETERAN AFFAIRS</div><div></div>
-            </div>
-          </div>
-      
-          <!-- Other Section -->
-          <div class="chart-section">
-            <div class="chart-header">OTHER</div>
-            <div class="chart-grid">
-              <div>OFFICE MANAGEMENT BUDGET</div><div></div>
-              <div>U.S. TRADE REPRESENTATIVE</div><div></div>
-              <div>ICE DIRECTOR</div><div>Tom Homan</div>
-              <div>UN AMBASSADOR</div><div>Elise Stefanik</div>
-              <div>EPA</div><div>Lee Zeldin</div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Second Column - National Security Staff -->
-        <div>
-          <div class="chart-section">
-            <div class="chart-header">NATIONAL SECURITY STAFF</div>
-            <div class="chart-grid">
-              <div>NSC ADVISOR</div><div></div>
-              <div>DEPUTY NSC</div><div></div>
-              <div>CIA</div><div></div>
-              <div>DNI</div><div></div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Third Column - Failed Nominations -->
-        <div>
-          <div class="chart-section">
-            <div class="chart-header">FAILED NOMINATIONS</div>
-            <div class="chart-grid">
-              <div>POSITION</div><div>NAME</div>
-            </div>
-          </div>
-        </div>
-      
-        <!-- Fourth Column - Fired -->
-        <div>
-          <div class="chart-section">
-            <div class="chart-header">FIRED</div>
-            <div class="chart-grid">
-              <div>POSITION</div><div>NAME</div>
-            </div>
-          </div>
-        </div>
+      <div class="center-container">
+        <img style="width: 35%;" src="./assets/trumpkeeptrack.png" alt="Trump Tracker Logo">
       </div>
+
+      <div class="w3-container">
+      
+        <div class="w3-row">
+          <a href="javascript:void(0)" onclick="openCity(event, 'General');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">General</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Cabinet');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Cabinet and Staff</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Justice');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Justice Department</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Immigration');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Immigration</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Defence');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Defence & FP</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Health');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Health</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Taxes');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Taxes</div>
+          </a>
+          <a href="javascript:void(0)" onclick="openCity(event, 'Education');">
+            <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding">Education</div>
+          </a>
+        </div>
+      
+        <div id="General" class="w3-container city" style="display:none">
+          <h2>General</h2>
+        </div>
+      
+        <div id="Cabinet" class="w3-container city" style="display:none">
+            <div class=" w3-padding chart-container">
+                <!-- First Column -->
+                <div>
+                  <!-- Executive Section -->
+                  <div class="chart-section">
+                    <div class="chart-header">EXECUTIVE</div>
+                    <div class="chart-grid">
+                      <div>POTUS</div><div>Donald J. Trump</div>
+                      <div>VPOTUS</div><div>JD Vance</div>
+                    </div>
+                  </div>
+              
+                  <!-- White House Staff Section -->
+                  <div class="chart-section">
+                    <div class="chart-header">WHITE HOUSE STAFF</div>
+                    <div class="chart-grid">
+                      <div>CHIEF OF STAFF</div><div>Susie Wiles</div>
+                      <div>DEPUTY CHIEF OF STAFF</div><div>Stephen Miller</div>
+                      <div>PRESS SECRETARY</div><div></div>
+                      <div>DEPUTY PRESS SECRETARY</div><div></div>
+                    </div>
+                  </div>
+              
+                  <!-- Cabinet Section -->
+                  <div class="chart-section">
+                    <div class="chart-header">CABINET</div>
+                    <div class="chart-grid">
+                      <div>AGRICULTURE</div><div></div>
+                      <div>COMMERCE</div><div></div>
+                      <div>DEFENSE</div><div></div>
+                      <div>EDUCATION</div><div></div>
+                      <div>ENERGY</div><div></div>
+                      <div>HEALTH HUMAN SERVICES</div><div></div>
+                      <div>HOMELAND SECURITY</div><div></div>
+                      <div>HOME URBAN DEVELOPMENT</div><div></div>
+                      <div>INTERIOR</div><div></div>
+                      <div>JUSTICE</div><div></div>
+                      <div>LABOR</div><div></div>
+                      <div>STATE</div><div></div>
+                      <div>TRANSPORTATION</div><div></div>
+                      <div>TREASURY</div><div></div>
+                      <div>VETERAN AFFAIRS</div><div></div>
+                    </div>
+                  </div>
+              
+                  <!-- Other Section -->
+                  <div class="chart-section">
+                    <div class="chart-header">OTHER</div>
+                    <div class="chart-grid">
+                      <div>OFFICE MANAGEMENT BUDGET</div><div></div>
+                      <div>U.S. TRADE REPRESENTATIVE</div><div></div>
+                      <div>ICE DIRECTOR</div><div>Tom Homan</div>
+                      <div>UN AMBASSADOR</div><div>Elise Stefanik</div>
+                      <div>EPA</div><div>Lee Zeldin</div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Second Column - National Security Staff -->
+                <div>
+                  <div class="chart-section">
+                    <div class="chart-header">NATIONAL SECURITY STAFF</div>
+                    <div class="chart-grid">
+                      <div>NSC ADVISOR</div><div></div>
+                      <div>DEPUTY NSC</div><div></div>
+                      <div>CIA</div><div></div>
+                      <div>DNI</div><div></div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Third Column - Failed Nominations -->
+                <div>
+                  <div class="chart-section">
+                    <div class="chart-header">FAILED NOMINATIONS</div>
+                    <div class="chart-grid">
+                      <div>POSITION</div><div>NAME</div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Fourth Column - Fired -->
+                <div>
+                  <div class="chart-section">
+                    <div class="chart-header">FIRED</div>
+                    <div class="chart-grid">
+                      <div>POSITION</div><div>NAME</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      
+        <div id="Justice" class="w3-container city" style="display:none">
+          <h2>Justice</h2>
+        </div>
+
+        <div id="Immigration" class="w3-container city" style="display:none">
+            <h2>Immigration</h2>
+            <div class="w3-container center-container">
+                <div class="w3-card-4 w3-margin">
+                    <table class="w3-table overview-table1">
+                        <tr class="title-row1">
+                            <th colspan="5">Overview of Immigration</th>
+                        </tr>
+                        <tr>
+                            <th>Data Point</th>
+                            <th>Current Month</th>
+                            <th>Last Month</th>
+                            <th>3 Month Trend</th>
+                            <th>1 Year Trend</th>
+                        </tr>
+                        <tr>
+                            <td class="data-point1">Haitians</td>
+                            <td>0.50%</td>
+                            <td>0.25%</td>
+                            <td>1%</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td class="data-point1">Idk</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="data-point1">Bread</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="data-point1">Meat</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="data-point1">Stock</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="data-point1">Gas</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+          </div>
+
+          <div id="Defence" class="w3-container city" style="display:none">
+            <h2>Defence</h2>
+          </div>
+
+          <div id="Health" class="w3-container city" style="display:none">
+            <h2>Health</h2>
+          </div>
+
+          <div id="Taxes" class="w3-container city" style="display:none">
+            <h2>Taxes</h2>
+          </div>
+
+          <div id="Education" class="w3-container city" style="display:none">
+            <h2>Education</h2>
+          </div>
+      </div>
+
+
+	
+
+
+
+    <script>
+        function openCity(evt, tabName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("city");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+          }
+          document.getElementById(tabName).style.display = "block";
+          evt.currentTarget.firstElementChild.className += " w3-border-red";
+        }
+    </script>
+
+
+    <div class="w3-container w3-padding"></div>
+
+    <div class="w3-row center-container w3-padding">
+        <img class="w3-image" style="width: 25%;" src="./assets/Logo_black.svg"></img>
+        <p class=""><b>By the Liberal Orchard Team</b></p>
+    </div>
+    <div class="w3-container w3-padding"></div>
 
 	<div class="w3-container w3-black w3-padding" style="width: 100%;">
 		<p class="w3-center">@LiberalOrchard</p>
