@@ -98,7 +98,71 @@
 .overview-table1 tr:hover td {
   background-color: #e0e0e0;
 }
+
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.leadership-table {
+    width: 80%;
+    max-width: 600px;
+    border-collapse: collapse;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.leadership-table th,
+.leadership-table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.table-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 15px;
+}
+
+.republican-header {
+    background-color: #d71920; /* Republican red */
+    color: white;
+    font-size: 1.1em;
+}
+
+.democrat-header {
+    background-color: #5da4e1; /* Democratic blue */
+    color: white;
+    font-size: 1.1em;
+}
+
+.leadership-table tbody td {
+    font-weight: normal;
+    padding: 15px;
+    vertical-align: top; /* Align content to the top */
+}
+
+.role-name {
+    font-weight: bold;
+    text-align: left;
+}
+
+.person-name {
+    text-align: right;
+}
+
+
   </style>
+
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+
 
 </head>
 <body>
@@ -164,7 +228,62 @@
         </div>
       
         <div id="General" class="w3-container city" style="display:none">
-          <h2>General</h2>
+            <div class="w3-container center-container">
+                <h2>General</h2>
+                <div>
+                    <h3>House</h3>
+                    <canvas id="houseChart"></canvas>
+                </div>
+                <div>
+                    <h3>Senate</h3>
+                    <canvas id="senateChart"></canvas>
+                </div>
+                <div>
+                    <h3>Supreme Court</h3>
+                    <canvas id="supremeCourtChart"></canvas>
+                </div>
+
+
+                <div class="table-container">
+                    <table class="leadership-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2" class="table-header">HOUSE LEGISLATIVE LEADERSHIP</th>
+                            </tr>
+                            <tr>
+                                <th class="republican-header">REPUBLICAN</th>
+                                <th class="democrat-header">DEMOCRAT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="role-name">SPEAKER:</span> <span class="person-name">Mike Johnson</span></td>
+                                <td><span class="role-name">MINORITY LEADER:</span> <span class="person-name">Hakeem Jeffries</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="role-name">MAJORITY WHIP:</span> <span class="person-name">Tom Emmer</span></td>
+                                <td><span class="role-name">MINORITY WHIP:</span> <span class="person-name">Katherine Clark</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="role-name">CONFERENCE CHAIRMAN:</span> <span class="person-name">Elise Stefanik</span></td>
+                                <td><span class="role-name">CAUCUS CHAIRMAN:</span> <span class="person-name">Pete Aguilar</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="role-name">COMMITTEE CHAIRMAN:</span> <span class="person-name">Jim Jordan</span></td>
+                                <td><span class="role-name">CAUCUS VICE CHAIR:</span> <span class="person-name">Ted Lieu</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span class="role-name">ASSISTANT DEMOCRATIC LEADER:</span> <span class="person-name">James Clyburn</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+                <!-- Link to external JavaScript file -->
+                <script src="./scripts/govTrumpTracker.js"></script>
+            </div>
         </div>
       
         <div id="Cabinet" class="w3-container city" style="display:none">

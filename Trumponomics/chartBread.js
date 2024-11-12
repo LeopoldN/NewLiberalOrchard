@@ -6,15 +6,16 @@ function renderChart() {
 
     // Get the size of the container (it will change on window resize)
     const container = d3.select("#breadD");
-    const containerWidth = container.node().getBoundingClientRect().width;
-    const containerHeight = container.node().getBoundingClientRect().height;
+    const mobileSize = 600;
+    var containerWidth = container.node().getBoundingClientRect().width;
+    var containerHeight = container.node().getBoundingClientRect().height;
 
     // Variables to quick Change names
     const thisFileName = "/Trumponomics/white_bread.json?v=1";
     const xDomainLow = 1;
     const xDomainHigh = 2.2;
-    const thisTitle = "US Average Bread Prices / Pound";
-    const thisYTitle = "Cost per lb in $";
+    var thisTitle = "US Average Bread Prices / Pound";
+    var thisYTitle = "Cost per lb in $";
     const isStepCurve = false;
     const toolTipDesc = "Average Price";
     const isDollar = true;
@@ -33,11 +34,25 @@ function renderChart() {
     const isDollar2 = false;
     const isPercentage2 = true;
     const jsonX2 = "defper";
+    var ticks = 8;
+    var logoSize = 100;
+    if(containerWidth <= mobileSize){
+        ticks = 5;
+        logoSize = 50;
+        thisYTitle = "";
+        thisTitle = "Average Bread Prices";
+        containerHeight = 300;
+        containerWidth = 340;
+    }
 
     var oLink1 = "https://fred.stlouisfed.org/series/APU0000702111";
     var oLink2 = "https://fred.stlouisfed.org/series/FYFSGDA188S";
     var oLinkName = "Bread Price Source";
     var oLinkName2 = "Percent of GDP Source";
+    if(containerWidth <= mobileSize){
+        oLinkName = "Source 1";
+        oLinkName2 = "Source 2";
+    }
 
     // Place Icon
     const isTopL = false;
@@ -47,12 +62,17 @@ function renderChart() {
 
     // Adjust margins based on screen width (smaller for mobile)
     let margin = { top: 100, right: 80, bottom: 50, left: 80 };
-
-    if (containerWidth < 500) {  // for mobile
-        margin = { top: 80, right: 30, bottom: 40, left: 30 };
+    if (containerWidth <= mobileSize) {  // for mobile
+        margin = { top: 80, right: 30, bottom: 40, left: 28 };
     } 
-    const width = containerWidth - margin.left - margin.right;
-    const height = containerHeight - margin.top - margin.bottom;
+
+    var width = containerWidth - margin.left - margin.right;
+    var height = containerHeight - margin.top - margin.bottom;
+
+    var titleSpacing = (width-50) / 2;
+    if(containerWidth <= mobileSize){
+        titleSpacing = width/2;
+    }
 
     // Append the svg object to the chart container
     const svg = container
@@ -68,53 +88,53 @@ function renderChart() {
     var locationY =0;
     if(isTopL){locationX = 0-10; locationY = 0;}
     if(isTopR){locationX = (width-margin.right-10); locationY = 0;}
-    if(isBotL){locationX = 0-10; locationY = (height-100);}
-    if(isBotR){locationX = width-margin.right-10; locationY = (height-100);}
+    if(isBotL){locationX = 0-10; locationY = (height-logoSize);}
+    if(isBotR){locationX = width-margin.right-10; locationY = (height-logoSize);}
 
     svg.append("image")
         .attr("xlink:href", "/assets/Logo_black.svg")  // Path to the image file
         .attr("x", locationX)  // Adjust the x position to place the image as desired
         .attr("y", locationY)          // Adjust the y position to place the image as desired
-        .attr("width", 100)     // Set the width of the image
-        .attr("height", 100)   // Set the height of the image
+        .attr("width", logoSize)     // Set the width of the image
+        .attr("height", logoSize)   // Set the height of the image
         .attr("opacity", 0.5);  // Set the opacity (50% visible)  
 
     // Adjust font sizes dynamically based on container width
-    const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
-    const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
-    const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
+    const titleFontSize = containerWidth <= mobileSize ? "16px" : "24px";  // smaller title for mobile
+    const labelFontSize = containerWidth <= mobileSize ? "12px" : "16px";  // smaller labels for mobile
+    const eventFontSizes = containerWidth <= mobileSize ? "8px" : "12px";
 
     // Add source text
-    svg.append("text")
-        .attr("x", 0) // Center the text horizontally
-        .attr("y", height+35) // Position near the bottom of the SVG
-        .attr("text-anchor", "middle") // Align text to center
-        .style("font-size", "12px")
-        .style("fill", "#000")
-        .style("cursor", "pointer")
-        .text(oLinkName)
-        .on("click", function() {
-        // Redirect to the sources page when clicked
-        window.open(oLink1, "_blank");
-        });
-    if(isTwoVariables){
-    svg.append("text")
-        .attr("x", 0) // Center the text horizontally
-        .attr("y", height+50) // Position near the bottom of the SVG
-        .attr("text-anchor", "middle") // Align text to center
-        .style("font-size", "12px")
-        .style("fill", "#000")
-        .style("cursor", "pointer")
-        .text(oLinkName2)
-        .on("click", function() {
-        // Redirect to the sources page when clicked
-        window.open(oLink2, "_blank");
-        });
-    }
+        svg.append("text")
+            .attr("x", 0) // Center the text horizontally
+            .attr("y", height+35) // Position near the bottom of the SVG
+            .attr("text-anchor", "middle") // Align text to center
+            .style("font-size", "12px")
+            .style("fill", "#000")
+            .style("cursor", "pointer")
+            .text(oLinkName)
+            .on("click", function() {
+            // Redirect to the sources page when clicked
+            window.open(oLink1, "_blank");
+            });
+        if(isTwoVariables){
+        svg.append("text")
+            .attr("x", 0) // Center the text horizontally
+            .attr("y", height+50) // Position near the bottom of the SVG
+            .attr("text-anchor", "middle") // Align text to center
+            .style("font-size", "12px")
+            .style("fill", "#000")
+            .style("cursor", "pointer")
+            .text(oLinkName2)
+            .on("click", function() {
+            // Redirect to the sources page when clicked
+            window.open(oLink2, "_blank");
+            });
+        }
 
     // Add the title
     svg.append("text")
-        .attr("x", (width+50) / 2)
+        .attr("x", titleSpacing)        
         .attr("y", -50)
         .attr("text-anchor", "middle")
         .text(thisTitle)
@@ -192,8 +212,8 @@ function renderChart() {
         }
 
         // Add gridlines
-        const makeXGridlines = () => d3.axisBottom(x).ticks(5);
-        const makeYGridlines = () => d3.axisLeft(y).ticks(5);
+        const makeXGridlines = () => d3.axisBottom(x).ticks(ticks);
+        const makeYGridlines = () => d3.axisLeft(y).ticks(ticks);
 
         svg.append("g")
             .attr("class", "grid")

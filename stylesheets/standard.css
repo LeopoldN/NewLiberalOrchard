@@ -126,8 +126,32 @@ opacity: 0.8;
 
 @media screen and (max-width: 600px) {
 
-  .article-width{
-    width: 99%;
+  .center-container, .article-width, .w3-bar{
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 2px;
+    width: 100%;
+}
+
+.w3-row, .w3-padding, .w3-margin, .w3-image, .w3-cell-row, .w3-cell{
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 2px;
+  width: 100%;
+}
+
+
+body{
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 0px;
+}
+  
+  .w3-container{
+    width: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 2px;
   }
 
   .smalltexth1{
@@ -143,17 +167,17 @@ opacity: 0.8;
   }
 
         /* Ensure the buttons take up the full width and center */
-        .w3-bar-item {
-          padding: 5px 0;
-          text-align: center;
-          width: 100%;
-      }
+    .w3-bar-item {
+      padding: 5px 0;
+      text-align: center;
+      width: 100%;
+  }
 
-      /* Ensure flex containers are centered and take full width */
-      .w3-bar > div {
-          justify-content: center;
-          width: 100%;
-      }
+  /* Ensure flex containers are centered and take full width */
+  .w3-bar > div {
+      justify-content: center;
+      width: 100%;
+  }
       
   .hide {
     display: none;
@@ -169,6 +193,37 @@ opacity: 0.8;
     width: 16px;
     height: 16px;
   }
+
+      /* Force tables to fit within the screen width */
+      .overview-table {
+        width: 100%;
+        display: table;
+        table-layout: fixed; /* Makes each cell evenly distributed */
+    }
+    
+    .overview-table th, .overview-table td {
+        padding: 8px;
+        word-wrap: break-word; /* Allows text to wrap within each cell */
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+    
+    /* Optional: Stack cells vertically on mobile */
+    .overview-table, .overview-table tr, .overview-table th, .overview-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .overview-table tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    .overview-table th {
+        background-color: #f1f1f1;
+        font-weight: bold;
+    }
+
+
 }
 
 
@@ -202,6 +257,65 @@ opacity: 0.8;
 tr:hover {
   background-color: #f1f1f1; /* Highlight on hover */
 }
+
+.toc-container {
+  width: 250px;
+}
+.toc-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.overview-table th, .overview-table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.overview-table th {
+  background-color: #607d8b; /* Dark grey-blue for header */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.overview-table .title-row th {
+  background-color: #3e4a52; /* Slightly darker for main title */
+  font-size: 1.2em;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.overview-table .data-point {
+  background-color: #FFF1E5;
+  color: #333;
+  font-weight: bold;
+  text-align: left;
+  border-right: 1px solid #000;
+}
+
+.overview-table td {
+  text-align: center;
+  color: #333;
+  border-right: 1px solid #000;
+}
+
+/* Alternate row colors for better readability */
+.overview-table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+/* Add subtle hover effect for rows */
+.overview-table tr:hover td {
+  background-color: #e0e0e0;
+}
+
+
 
 
 
