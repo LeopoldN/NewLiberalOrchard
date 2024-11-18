@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="SkyUrls - By Liberal Orchard">    
+<meta name="description" content="Shop landing page for all TLD domains offered">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@liberalorchard">
+<meta name="twitter:url" content="http://www.liberalorchard.com/skyurls.html">
+<meta name="twitter:title" content="SkyUrls - By Liberal Orchard">
+<meta name="twitter:description" content="Shop landing page for all TLD domains offered">
+<meta name="twitter:image" content="http://www.liberalorchard.com/assets/liberal.markets.png">
+<meta name="twitter:image:alt" content="The Liberal Orchard logo">
+<link rel="icon" type="image/x-icon" href="/assets/Logo_white.svg">    
+
+<title>SkyUrls - By Liberal Orchard</title>
+<link rel="stylesheet" href="./stylesheets/standard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body{
+    color: white;
+    background-color: black;
+}
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  height: 13vh;
+  user-select: none;
+  gap: 2rem;
+  margin-top: 50px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+/*background-color: green;*/
+  transform: skewY(-3deg); 
+  transform: rotate(-5deg) translateY(-30px) translateX(5px);
+}
+
+
+.marquee:hover {
+  -webkit-text-stroke: 1.5px #fff;
+	text-stroke: 1.5px #fff;
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+	color: transparent;
+	transition: all 0.5s ease;
+	-webkit-font-smoothing: antialiased;
+	/*-moz-osx-font-smoothing: grayscale;*/
+
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-width: 100%;
+  animation: scroll 15s linear infinite reverse;
+}
+
+.marquee__group span {
+  color: white;
+  font-size: 5vw;
+  font-weight: 800;
+  white-space: nowrap;
+  font-family: 'Syne', sans-serif !important;
+  text-transform: uppercase;
+  
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+img{
+    width: 480px;
+}
+
+@media (max-width: 600px) {
+    .marquee__group span {
+        font-size: 6.5vw;
+    }
+    img {
+    width: 300px; /* Adjust the width for mobile screens */
+    margin: 0 auto; /* Centers the image horizontally if its container allows it */
+  }
+    .marquee{
+        margin-top: 1px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        transform: skewY(0deg); 
+        transform: rotate(0deg) translateY(0px) translateX(5px);
+        height: 5vh;
+  }
+  .marquee_three{
+    padding-top: 0px;
+    margin-top: 0px;
+  }
+}
+
+.marquee__three {
+  display: flex;
+  overflow: hidden;
+  height: 68vh;
+  user-select: none;
+  gap: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  /*transform: rotate(-5deg) translateY(-100px) translateX(50px);*/
+  /*animation: scroll 10s linear infinite reverse;*/
+  /*background-color: green;*/
+   /*transform: skewY(-8deg); */
+    /*-webkit-mask-image:radial-gradient(rgba(0, 0, 0,1) 15%, transparent 68%);*/
+    /*mask-image: linear-gradient(transparent, black 10%, black 70%, transparent 100%);*/
+   
+}
+
+
+.marquee__group__three {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  min-width: 100%;
+  animation: scroll 30s linear infinite;
+}
+
+
+.marquee__group__three img:hover {
+   	transition: all 0.5s ease-in-out;
+    /*transform: skewY(-8deg);*/
+    transform: scale(1.1);
+    background-color: #c1532f;
+    object-fit: cover;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    will-change: transform;
+    margin-top: 1rem;
+}
+
+.grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+      gap: 20px; /* Space between items */
+      padding: 20px;
+      width: 80%;
+    }
+
+/* Adjust to 1x4 grid on mobile */
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column */
+    width: 95%;
+  }
+}
+
+    .card {
+      background-color: #000; /* Black card background */
+      border: 2px solid #fff; /* White border for the card */
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none; /* Removes underline from links */
+      color: inherit; /* Inherits text color */
+    }
+
+    .card:hover {
+      transform: translateY(-5px); /* Slight lift on hover */
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3); /* Stronger white shadow on hover */
+    }
+
+    .card img {
+      display: block;
+      width: auto;
+      max-width: 80%; /* Ensure the image has padding around it */
+      height: auto;
+      margin: 5px auto; /* Center the image within the card */
+    }
+
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 10px 0;
+      text-transform: uppercase;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: #ccc; /* Subtle description text */
+    }
+
+    .multi-column-list {
+  column-count: 2; /* Split the list into two columns */
+  column-gap: 20px; /* Add space between the columns */
+  list-style-type: none; /* Removes default bullet points */
+  padding: 0;
+  margin: 0;
+  color: #ccc; /* Matches description text color */
+}
+
+
+    .comparison-card {
+      border-radius: 10px;
+      margin-top: 60px;
+      margin-bottom: 20px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      background-color: #000; /* Black background inside the card */
+    }
+
+    .comparison-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .comparison-text {
+      font-size: 16px;
+      margin: 20px 0;
+    }
+
+    .handle {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .old-handle {
+      background-color: #822d2d; /* Dark red */
+    }
+
+    .new-handle {
+      background-color: #256d25; /* Dark green */
+    }
+
+    .arrow {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+
+
+
+</style>
+
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+
+
+</head>
+<body>
+	
+	<!-- NAVIGATION TOP BAR -->
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="LiberalOrchard" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+	<div class="w3-bar w3-border-bottom" style="display: flex; align-items: center; justify-content: space-between;">
+		<!-- Left-side Logo and Text -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./index.html" class="w3-bar-item w3-left">
+			<img class="logo" src="./assets/Logo_white.svg" alt="Logo">
+		  </a>
+		  <a href="./index.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge w3-large">
+			<span class="hide">Liberal Orchard</span> 
+		  </a>
+		</div>
+		
+		<!-- Right-side Icons and About -->
+		<div style="display: flex; align-items: center;">
+		  <a href="./about.html" class="w3-bar-item w3-button w3-hover-black w3-hover-opacity w3-round-xxlarge">
+			About
+		  </a>
+		  <a href="http://www.liberal.cafe" target="_blank" class="w3-bar-item w3-button w3-hover-theme">
+            <svg style="height: 32px; width: 32px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M96 64c0-17.7 14.3-32 32-32l320 0 64 0c70.7 0 128 57.3 128 128s-57.3 128-128 128l-32 0c0 53-43 96-96 96l-192 0c-53 0-96-43-96-96L96 64zM480 224l32 0c35.3 0 64-28.7 64-64s-28.7-64-64-64l-32 0 0 128zM32 416l512 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>		  </a>
+		  <a href="https://www.x.com/LiberalOrchard" target="_blank" class="w3-bar-item w3-button">
+			<svg style="height: 32px; width: 32px;" xmlns:xlink="http://www.w3.org/2000/svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM351.3 199.3v0c0 86.7-66 186.6-186.6 186.6c-37.2 0-71.7-10.8-100.7-29.4c5.3 .6 10.4 .8 15.8 .8c30.7 0 58.9-10.4 81.4-28c-28.8-.6-53-19.5-61.3-45.5c10.1 1.5 19.2 1.5 29.6-1.2c-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3c-9-6-16.4-14.1-21.5-23.6s-7.8-20.2-7.7-31c0-12.2 3.2-23.4 8.9-33.1c32.3 39.8 80.8 65.8 135.2 68.6c-9.3-44.5 24-80.6 64-80.6c18.9 0 35.9 7.9 47.9 20.7c14.8-2.8 29-8.3 41.6-15.8c-4.9 15.2-15.2 28-28.8 36.1c13.2-1.4 26-5.1 37.8-10.2c-8.9 13.1-20.1 24.7-32.9 34c.2 2.8 .2 5.7 .2 8.5z"/></svg>
+		  </a>
+		</div>
+	  </div>
+
+      <div class="w3-container w3-padding"><br/></div>
+
+      <div class="marquee">
+        <div class="marquee__group">
+            <span>SkyUrls ➺</span>
+            <span>SkyUrls ➺</span>
+            <span>SkyUrls ➺</span>
+        </div>
+        <div class="marquee__group" aria-hidden="true">
+            <span>SkyUrls ➺</span>
+            <span>SkyUrls ➺</span>
+            <span>SkyUrls ➺</span>
+          </div>
+    </div>
+
+    <div class="w3-container center-container">
+        <div class="comparison-card">
+            <div class="comparison-title">Change Your Style</div>
+            <div class="handle old-handle">@nick143.bsky.social</div>
+            <div class="arrow">→</div>
+            <div class="handle new-handle">@nick.liberal.markets</div>
+        </div>
+    </div>
+
+    <div class="w3-container center-container">
+        <h1 class="w3-center">Shop</h1>
+        <div class="grid-container center-container">
+                <a href="https://buymeacoffee.com/liberalorchard" target="_blank" class="card">
+                    <img src="./assets/marketsdomains.png" alt="Markets domains image">
+                    <div class="card-content">
+                    <div class="card-title">.markets Domain for $3/month</div>
+                    <div class="card-description"><p>
+                        socialist.markets<br/>
+                        communist.markets<br/>
+                        anarchist.markets<br/>
+                        liberal.markets
+                    </p></div>
+                    </div>
+                </a>
+                <a href="https://buymeacoffee.com/liberalorchard" target="_blank" class="card">
+                    <img src="./assets/gaydomains.png" alt="Item 2">
+                    <div class="card-content">
+                    <div class="card-title">.gay Domain for $2/month</div>
+                                    <div class="card-description"><p>
+                        socialistand.gay<br/>
+                        communistand.gay<br/>
+                        anarchistand.gay<br/>
+                        liberaland.gay
+                    </p></div>
+                    </div>
+                </a>
+                <a href="https://buymeacoffee.com/liberalorchard" target="_blank" class="card">
+                    <img src="./assets/beautydomains.png" alt="Item 3">
+                    <div class="card-content">
+                    <div class="card-title">.beauty Domain for $2/month</div>
+                                    <div class="card-description"><p>
+                        socialist.beauty<br/>
+                        communist.beauty<br/>
+                        anarchist.beauty<br/>
+                        liberal.beauty
+                    </p></div>
+                    </div>
+                </a>
+                <a href="https://buymeacoffee.com/liberalorchard" target="_blank" class="card">
+                    <img src="./assets/miscdomains.png" alt="Item 4">
+                    <div class="card-content">
+                      <div class="card-title">Misc Domain for $1/month</div>
+                      <div class="card-description">
+                        <p>
+                        Get access to liberal/socialist/communist/anarchist + TLDs like <br/>
+                        .yacht | .team | .town <br />
+                        .monster | .house | .home<br/>
+                        .mom | .black | more to come
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+        </div>
+      </div>
+
+
+  <!-- Centered Button -->
+  <div class="w3-center" style="margin-top: 20px;">
+    <a href="https://buymeacoffee.com/liberalorchard" target="_blank" class="w3-button w3-xlarge w3-black w3-border w3-border-white w3-round-large w3-hover-white w3-hover-text-black" style="padding: 10px 20px; text-decoration: none; font-size: 16px;">
+      Go to Shop
+    </a>
+  </div>
+
+
+  <div class="marquee__three marquee--hover-pause">
+    <div class="marquee__group__three">
+        <img src="./assets/socialist.markets.png" alt="">
+        <img src="./assets/liberal.markets.png" alt="">
+        <img src="./assets/communist.house.png" alt=""> 
+        <img src="./assets/anarchist.black.png" alt="">
+    </div>
+
+    <div aria-hidden="true" class="marquee__group__three">
+            <img src="./assets/socialist.markets.png" alt="">
+            <img src="./assets/liberal.markets.png" alt="">
+            <img src="./assets/communist.house.png" alt="">
+            <img src="./assets/anarchist.black.png" alt="">
+    </div>
+</div>
+
+
+    <div class="w3-container w3-padding"></div>
+
+    <div class="w3-row center-container w3-padding">
+        <img class="w3-image" style="width: 25%;" src="./assets/Logo_white.svg"></img>
+        <p class=""><b>By the Liberal Orchard Team</b></p>
+    </div>
+    <div class="w3-container w3-padding"></div>
+
+	<div class="w3-container w3-white w3-padding" style="width: 100%;">
+		<p class="w3-center">@LiberalOrchard</p>
+	</div>
+
+</body>
+</html>
