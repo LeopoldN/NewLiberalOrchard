@@ -1,0 +1,352 @@
+    /* Color variables */
+    :root {
+        --bg: #fff;
+        --primary: #000;
+        --text: #000;
+        --muted: #000;
+      }
+  
+      /* 1) Reset & box‑sizing */
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+  
+      /* 2) Base typography & colors */
+      body {
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.6;
+        color: var(--primary);
+        /* Subtle cool gradient background */
+        background-color: #f9f9f9;
+        background-image: linear-gradient(135deg, #f9f9f9 0%, #e0e0e5 100%);
+        background-attachment: fixed;
+      }
+  
+      /* 3) Utility .inner to constrain width & center */
+      .inner {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+  
+      /* 4) Header with 3D border & constrained width */
+      .site-header {
+        width: 90%;
+        max-width: 900px;
+        margin: 1rem auto;
+        padding: 1rem 2rem;
+        position: relative;
+        background: var(--bg);
+        border: 2px solid var(--primary);
+      }
+      .site-header::after {
+        content: '';
+        position: absolute;
+        top: 6px; left: 6px; right: -6px; bottom: -6px;
+        border: 2px solid var(--primary);
+        z-index: -1;
+      }
+      .site-header .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .site-title {
+        font-size: 1.25rem;
+        letter-spacing: .1em;
+        color: var(--primary);
+      }
+  
+      /* 5) Nav & mobile menu toggle */
+      .site-nav ul {
+        list-style: none;
+        display: none; /* hidden on mobile */
+      }
+      .site-nav li {
+        display: inline;
+        margin-left: 1.5rem;
+      }
+      .site-nav a {
+        text-decoration: none;
+        font-size: .9rem;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: var(--primary);
+      }
+      .menu-toggle {
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--primary);
+      }
+
+      .menu-icon {
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;;
+      }
+  
+      /* 6) Main posts container */
+      .site-main.inner {
+        margin-bottom: 2rem;
+      }
+      .site-main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+  
+      /* 7) Post cards with thumbnails and 3D border */
+
+      .article-container {
+        margin-bottom: 2rem; /* adjust spacing as needed */
+      }
+
+      .article-card {
+        width: 100%;
+        max-width: 900px;
+        position: relative;
+        padding: 1.5rem;
+        background: var(--bg);
+        border: 2px solid var(--primary);
+        display: block;
+        margin: 0 auto;
+      }
+
+      .article-card::after {
+        content: '';
+        position: absolute;
+        top: 6px; left: 6px; right: -6px; bottom: -6px;
+        border: 2px solid var(--primary);
+        z-index: -1;
+      }
+
+      .article-img {
+        width: 80%;
+        height: auto;
+        border-radius: 8px;
+        border: 2px solid var(--primary);
+        display: block;
+        margin: 0 auto;
+      }
+
+      .article-title {
+        font-size: 1.2rem;
+        margin-bottom: .75rem;
+        color: var(--primary);
+        text-align: center;
+      }
+
+      /* Center description and info within image width */
+      .article-description,
+      .article-info {
+        width: 80%;           /* match the image's width */
+        margin: 0.75rem auto; /* vertical spacing and center */
+        text-align: center;   /* center text */
+        font-size: .95rem;
+        color: var(--text);
+      }
+
+      .article-author {
+        font-weight: bold;
+      }
+
+      /* Constrain link to card dimensions */
+      .article-link {
+        display: block;
+        width: 80%;
+        max-width: 900px;
+        margin: 0 auto;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .article-link:hover .article-title{
+        color: #0b7dda;
+      }
+  
+      /* 8) Footer with padding & constrained width */
+      .site-footer {
+        width: 90%;
+        max-width: 900px;
+        margin: 1rem auto;
+        padding: 1rem 2rem;
+        position: relative;
+        background: var(--bg);
+        border: 2px solid var(--primary);
+      }
+      .site-footer::after {
+        content: '';
+        position: absolute;
+        top: 6px; left: 6px; right: -6px; bottom: -6px;
+        border: 2px solid var(--primary);
+        z-index: -1;
+      }
+      .site-footer p {
+        font-size: .8rem;
+        color: var(--muted);
+        text-align: center;
+      }
+  
+      /* 9) Tablet & up (iPad) */
+      @media (min-width: 768px) {
+        .site-nav ul { display: block; }
+        .menu-toggle { display: none; }
+        .site-main {
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+      }
+  
+      /* 10) Desktop & up (laptop/large) */
+      @media (min-width: 1024px) {
+        .inner { max-width: 900px; }
+        .site-main {
+          grid-template-columns: 1fr;
+        }
+      }
+
+  /* Pagination styling for Liberal Orchard vibe */
+  .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination-spacer {
+    flex: 1;
+  }
+
+  .pagination {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .pagination__button {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    border: 2px solid var(--primary);
+    background: var(--bg);
+    color: var(--primary);
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+  }
+
+  .pagination__button:hover {
+    background: var(--primary);
+    color: var(--bg);
+    cursor: pointer;
+  }
+
+  .pagination__button.active {
+    background: var(--primary);
+    color: var(--bg);
+  }
+
+  /* Article Styling */
+
+  .article-header {
+    width: 90%;
+    max-width: 1350px;
+    margin: 1rem auto;
+    padding: 1rem 2rem;
+    position: relative;
+    background: var(--bg);
+    border: 2px solid var(--primary);
+  }
+
+  .article-header::after {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: -6px; bottom: -6px;
+    border: 2px solid var(--primary);
+    z-index: -1;
+  }
+
+  .article-header .inner-article {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .article-footer {
+    width: 90%;
+    max-width: 1350px;
+    margin: 1rem auto;
+    padding: 1rem 2rem;
+    position: relative;
+    background: var(--bg);
+    border: 2px solid var(--primary);
+  }
+  .article-footer::after {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: -6px; bottom: -6px;
+    border: 2px solid var(--primary);
+    z-index: -1;
+  }
+  .article-footer p {
+    font-size: .8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .main-article-container{
+    width: 100%;
+    max-width: 1450px;
+    position: relative;
+    padding: 1.5rem;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .main-article-card{
+    width: 100%;
+    max-width: 1350px;
+    position: relative;
+    padding: 1.5rem;
+    background: var(--bg);
+    border: 2px solid var(--primary);
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  .main-article-card::after {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: -6px; bottom: -6px;
+    border: 2px solid var(--primary);
+    z-index: -1;
+  }
+
+  .main-article-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    display: block;
+    margin: 0 auto;
+  }
+
+  .main-article-title {
+    font-size: 1.25rem;
+    letter-spacing: .1em;
+    color: var(--primary);
+  }
+
+  .margin-bottom{
+    margin-bottom: 1rem;
+  }
+
+  .inner-article {
+    width: 90%;
+    max-width: 1350px;
+    margin: 0 auto;
+  }

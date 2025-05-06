@@ -1,49 +1,72 @@
-function renderChart() {
+function renderCharts(config = {}) {
+
+    // ──────────────────────────────────────────────────────────────
+    // Configuration (values can be overridden via the `config` arg)
+    // ──────────────────────────────────────────────────────────────
+    const {
+        // DOM
+        containerSelector = "#deficitGDP-container",
+        // Data
+        thisFileName      = "./fred_weekly_update.csv?v=1",
+        // Left‑axis domain
+        xDomainLow        = -3500000,
+        xDomainHigh       = -300000,
+        // Labels
+        thisTitle         = "US Budget Deficit and % of GDP",
+        thisYTitle        = "US Budget Deficit (in Millions of $)",
+        thisYTitleRight   = "Budget Deficit % GDP",
+        // Tool‑tips
+        toolTipDesc       = "Deficit",
+        toolTipDesc2      = "Deficit/GDP",
+        // Series mapping
+        jsonX             = "deficit",
+        jsonX2            = "defper",
+        // Styling
+        strokeColor       = "red",
+        strokeColor2      = "gray",
+        strokeWidth       = 3,
+        backgroundOpacity = 0.05,
+        isStepCurve       = false,
+        // Flags
+        isDollar          = true,
+        isPercentage      = false,
+        isTwoVariables    = true,
+        isDollar2         = false,
+        isPercentage2     = true,
+        // Right‑axis domain
+        xDomainL2         = 0,
+        xDomainH2         = 15,
+        // Auto‑domain calculation
+        autoDomainLeft  = false,   // true → pad 5 % beyond min/max
+        autoDomainRight = false,   // for the right axis when isTwoVariables
+        // Event line & shading toggle
+        showEventLines  = true,   // false → hide vertical lines & shading
+        // Source links
+        oLink1            = "https://fred.stlouisfed.org/series/FYFSD",
+        oLink2            = "https://fred.stlouisfed.org/series/FYFSGDA188S",
+        oLinkName         = "Surplus/Deficit Source",
+        oLinkName2        = "Percent of GDP Source",
+        // Logo placement
+        isTopL            = false,
+        isTopR            = false,
+        isBotL            = true,
+        isBotR            = false,
+        // Forward‑fill sparse series to match daily grid
+        forwardFillX   = false,
+        forwardFillX2  = false,
+        // Optional date filter (ISO strings 'YYYY-MM-DD')
+        dateStart        = null,
+        dateEnd          = null,
+    } = config;
 
     // Remove any existing SVG to re-render on resize
-    d3.select("#deficitGDP-container svg").remove();
+    d3.select(containerSelector + " svg").remove();
     d3.select("#tooltip").remove();  // Remove any existing tooltip
 
     // Get the size of the container (it will change on window resize)
-    const container = d3.select("#deficitGDP-container");
+    const container = d3.select(containerSelector);
     const containerWidth = container.node().getBoundingClientRect().width;
     const containerHeight = container.node().getBoundingClientRect().height;
-
-    // Variables to quick Change names
-    const thisFileName = "/CSV/TotalDeficit.json?v=1";
-    const xDomainLow = -3500000;
-    const xDomainHigh = -300000;
-    const thisTitle = "US Budget Deficit and % of GDP";
-    const thisYTitle = "US Budget Deficit (in Millions of $)";
-    const isStepCurve = false;
-    const toolTipDesc = "Deficit";
-    const isDollar = true;
-    const isPercentage = false;
-    const jsonX = "deficit";
-    const strokeColor = "red";
-    const backgroundOpacity = 0.05;
-    const strokeWidth = 3;
-
-    const isTwoVariables = true;
-    const strokeColor2 = "gray";
-    const thisYTitleRight = "Budget Deficit % GDP";
-    const toolTipDesc2 = "Deficit/GDP";
-    const xDomainL2 = 0;
-    const xDomainH2 = 15;
-    const isDollar2 = false;
-    const isPercentage2 = true;
-    const jsonX2 = "defper";
-
-    var oLink1 = "https://fred.stlouisfed.org/series/FYFSD";
-    var oLink2 = "https://fred.stlouisfed.org/series/FYFSGDA188S";
-    var oLinkName = "Surplus/Deficit Source";
-    var oLinkName2 = "Percent of GDP Source";
-
-    // Place Icon
-    const isTopL = false;
-    const isTopR = false;
-    const isBotL = true;
-    const isBotR = false;
 
     // Adjust margins based on screen width (smaller for mobile)
     let margin = { top: 100, right: 80, bottom: 50, left: 80 };
@@ -154,25 +177,82 @@ function renderChart() {
 
     const parseTime = d3.timeParse("%Y-%m-%d");
 
-    // Load the JSON data
-    d3.json(thisFileName).then(data => {
+    // Load the CSV data (optionally filtered by dateStart/dateEnd)
+    d3.csv(thisFileName).then(data => {
         data.forEach(d => {
             d.date = parseTime(d.date);
-            d[jsonX] = (d[jsonX]) !== null ? +d[jsonX] : null;
-            d[jsonX2] = (d[jsonX2]) !== null ? +d[jsonX2] : null;
+            d[jsonX]  = (d[jsonX]  && d[jsonX]  !== 'null') ? +d[jsonX]  : null;
+            d[jsonX2] = (d[jsonX2] && d[jsonX2] !== 'null') ? +d[jsonX2] : null;
         });
+
+        // ── optionally forward‑fill to smooth frequency mismatches ─────────
+        if (forwardFillX) {
+            let last = null;
+            data.forEach(d => {
+                if (d[jsonX] != null) last = d[jsonX];
+                else d[jsonX] = last;
+            });
+        }
+        if (isTwoVariables && forwardFillX2) {
+            let last2 = null;
+            data.forEach(d => {
+                if (d[jsonX2] != null) last2 = d[jsonX2];
+                else d[jsonX2] = last2;
+            });
+        }
+
+        // ── trim to user‑requested time range, if any ───────────────────
+        const startDate = dateStart ? parseTime(dateStart) : null;
+        const endDate   = dateEnd   ? parseTime(dateEnd)   : null;
+        if (startDate || endDate) {
+            data = data.filter(d =>
+                (!startDate || d.date >= startDate) &&
+                (!endDate   || d.date <= endDate)
+            );
+        }
 
         const x = d3.scaleTime()
             .domain(d3.extent(data, d => d.date))
             .range([0, width]);
 
+        // ── derive y‑axis domains, with optional 5 % padding ─────────────
+        let leftLow  = xDomainLow;
+        let leftHigh = xDomainHigh;
+        if (autoDomainLeft) {
+            const valsLeft = data
+              .filter(d => d[jsonX] !== null)
+              .map(d => d[jsonX]);
+            if (valsLeft.length) {
+              const minL = d3.min(valsLeft);
+              const maxL = d3.max(valsLeft);
+              const padL = (maxL - minL) * 0.05 || 1; // fallback pad = 1
+              leftLow  = minL - padL;
+              leftHigh = maxL + padL;
+            }
+        }
+
+        let rightLow  = xDomainL2;
+        let rightHigh = xDomainH2;
+        if (isTwoVariables && autoDomainRight) {
+            const valsRight = data
+              .filter(d => d[jsonX2] !== null)
+              .map(d => d[jsonX2]);
+            if (valsRight.length) {
+              const minR = d3.min(valsRight);
+              const maxR = d3.max(valsRight);
+              const padR = (maxR - minR) * 0.05 || 1;
+              rightLow  = minR - padR;
+              rightHigh = maxR + padR;
+            }
+        }
+
         const y = d3.scaleLinear()
-            .domain([xDomainLow, xDomainHigh])
+            .domain([leftLow, leftHigh])
             .range([height, 0]);
         
         const y2 = d3.scaleLinear()
-            .domain([xDomainL2,xDomainH2])
-            .range([height,0]);
+            .domain([rightLow, rightHigh])
+            .range([height, 0]);
 
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
@@ -209,9 +289,12 @@ function renderChart() {
             );            
 
         const lineX1 = d3.line()
+            .defined(d => d[jsonX] !== null)
             .x(d => x(d.date))
             .y(d => y(d[jsonX]));
+        
         const lineX2 = d3.line()
+            .defined(d => d[jsonX2] !== null)
             .x(d => x(d.date))
             .y(d => y2(d[jsonX2]));
             
@@ -290,64 +373,60 @@ function renderChart() {
         //    .text(`CPI ${latestData.cpi}%`);
 
 
-        // Add event lines and labels
+    /* ── Election cycle markers & background shading ─────────────── */
+    if (showEventLines) {
         const eventDates = [
-            {date: "2013-01-01", label: "Obama Elected"},
-            {date: "2017-01-01", label: "Trump Elected"}
-            //{date: "2021-01-01", label: "Biden Elected"}
+          { date: "2013-01-01", label: "Obama Elected",  color: "blue" },
+          { date: "2017-01-01", label: "Trump Elected",  color: "red"  },
+          { date: "2021-01-01", label: "Biden Elected",  color: "blue" },
+          { date: "2025-01-01", label: "Trump Term 2",   color: "red"  }
         ];
+        const eventsParsed = eventDates.map(e => ({ ...e, d: parseTime(e.date) }));
 
-        // Parse event dates and add event lines
-        eventDates.forEach((event,index) => {
-            const eventDate = parseTime(event.date);
-            let shift = 0;
-            if(index ==1) {shift =-15
-            }else if(index==2) {}
+        /* 1️⃣  background rectangles FIRST (so they sit behind data) */
+        eventsParsed.forEach((e, idx) => {
+          const xStartRaw = x(e.d);
+          const xEndRaw   = idx === eventsParsed.length - 1
+                              ? width
+                              : x(eventsParsed[idx + 1].d);
 
-            // Add the vertical line for the event
-            svg.append("line")
-                .attr("x1", x(eventDate))
-                .attr("x2", x(eventDate))
-                .attr("y1", 0)  
-                .attr("y2", height)
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("stroke-dasharray", "4");
+          // clamp to visible plot
+          const xStart = Math.max(0, xStartRaw);
+          const xEnd   = Math.min(width, xEndRaw);
 
-            // Add the event label text
-            svg.append("text")
-                .attr("x", x(eventDate)+shift)
-                .attr("y", -10)  // Higher above the chart
-                .attr("text-anchor", "middle")
-                .style("font-size", eventFontSizes)
-                .style("font-weight", "bold")
-                .text(event.label);
+          // skip if the entire band is off‑screen
+          if (xEnd <= 0 || xStart >= width) return;
+
+          svg.append("rect")
+             .attr("x", xStart)
+             .attr("y", 0)
+             .attr("width", xEnd - xStart)
+             .attr("height", height)
+             .style("fill", e.color)
+             .style("opacity", backgroundOpacity);
         });
 
-        // Parse the first event date (Obama elected)
-        const TrumpDate = new Date(eventDates[1].date);
-        const BidenDate = new Date("2021-01-01");
+        /* 2️⃣  vertical lines + labels on top (only if they fall inside plot) */
+        eventsParsed.forEach(({ d, label }, idx) => {
+          const xPos = x(d);
+          if (xPos < 0 || xPos > width) return; // skip off‑screen events
 
-        // Get the x-coordinate for the Obama date
-        const TrumpX = x(TrumpDate);
-        const BidenX = x(BidenDate)-x(TrumpDate);
+          svg.append("line")
+             .attr("x1", xPos).attr("x2", xPos)
+             .attr("y1", 0).attr("y2", height)
+             .attr("stroke", "black")
+             .attr("stroke-width", 1)
+             .attr("stroke-dasharray", "4");
 
-        // Add the red rectangle with 50% opacity
-        svg.append("rect")
-        .attr("x", 0)                          // Start from the left side
-        .attr("y", 0)                          // Top of the chart
-        .attr("width", TrumpX)               // Width goes to the Kennedy date
-        .attr("height", height)                // Full height of the chart
-        .style("fill", "blue")                  // Set the color to red
-        .style("opacity", backgroundOpacity);                // 50% opacity
-        svg.append("rect")
-        .attr("x", TrumpX)                          // Start from the left side
-        .attr("y", 0)                          // Top of the chart
-        .attr("width", BidenX)               // Width goes to the Kennedy date
-        .attr("height", height)                // Full height of the chart
-        .style("fill", "red")                  // Set the color to red
-        .style("opacity", backgroundOpacity);                // 50% opacity
-
+          svg.append("text")
+             .attr("x", xPos + (idx % 2 ? -15 : 15))  // stagger a bit
+             .attr("y", -10)
+             .style("text-anchor", "middle")
+             .style("font-size", eventFontSizes)
+             .style("font-weight", "bold")
+             .text(label);
+        });
+    }
 
         // Add hover effects
         const bisectDate = d3.bisector(d => d.date).left;
@@ -411,10 +490,7 @@ function renderChart() {
                 tooltip.style("display", "none");
             });
     });
+
 }
-
-// Call the function initially to render the chart
-renderChart();
-
-// Add an event listener to redraw the chart when the window is resized
-window.addEventListener("resize", renderChart);
+// Make available to other scripts
+window.renderCharts = renderCharts;
