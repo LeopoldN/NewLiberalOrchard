@@ -86,7 +86,10 @@
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="LiberalOrchard" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
     <header class="article-header">
         <div class="inner-article">
-        <a style="text-decoration: none;" href="./index.html"><h1 class="site-title">LIBERAL ORCHARD</h1></a>
+        <a style="display: flex; align-items: center; text-decoration: none;" href="./index.html">
+          <img src="./assets/star.png" alt="Liberal Orchard Logo" style="height: 48px; margin-right: 10px;">
+          <h1 class="site-title">LIBERAL ORCHARD</h1>
+        </a>
           <nav class="site-nav">
             <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
@@ -295,7 +298,6 @@
             <div class="main-article-card">
 
             <div id="fedfunds-container" style="width: 100%; height: 500px;"></div>
-            <script src="/scripts/chartFedFunds.js"></script>
 
             <br/><br/>
             <p class="articletext">
@@ -350,19 +352,21 @@
 
 
 
-                                                     <!-- Disqus Universal Code -->
-                                                     <div class = "disqus-width" id="disqus_thread"></div>
-                                                     <script>
-                                                     (function() { // DON'T EDIT BELOW THIS LINE
-                                                     var d = document, s = d.createElement('script');
-                                                     s.src = 'https://liberalorchard.disqus.com/embed.js';
-                                                     s.setAttribute('data-timestamp', +new Date());
-                                                     (d.head || d.body).appendChild(s);
-                                                     })();
-                                                     </script>
-                                                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                                   <!-- End of Disqus Universal Code --> 
-
+                    <script src="https://giscus.app/client.js"
+                            data-repo="LeopoldN/NewLiberalOrchard"
+                            data-repo-id="R_kgDOMlVUQw"
+                            data-category="Article Comments"
+                            data-category-id="DIC_kwDOMlVUQ84CsQ0J"
+                            data-mapping="pathname"
+                            data-strict="0"
+                            data-reactions-enabled="1"
+                            data-emit-metadata="0"
+                            data-input-position="top"
+                            data-theme="light_high_contrast"
+                            data-lang="en"
+                            crossorigin="anonymous"
+                            async>
+                    </script>
         
 	</div>
 
@@ -409,11 +413,38 @@
           dateEnd           : '2025-12-31',  // ← optional upper bound
           isTopL: false, isTopR :false, isBotL : false, isBotR : true
         };
+
+        const fedfundsCfg = {
+          containerSelector : '#fedfunds-container',
+          thisTitle         : 'US Federal Funds Rate',
+          thisYTitle        : 'Federal Funds Rate %',
+          thisYTitleRight   : 'Debt to GDP ratio',
+          toolTipDesc       : 'Fed Funds', toolTipDesc2 : 'Ratio',
+          jsonX             : 'FEDFUNDS', jsonX2 : 'GFDEGDQ188S',
+          isDollar          : false, isDollar2 : false,
+          isStepCurve       : false, 
+          isPercentage      : true, isPercentage2 : true,
+          isTwoVariables    : false,
+          strokeColor       : 'black',
+          strokeColor2      : 'grey',
+          xDomainLow        : 12000000, xDomainHigh : 30000000,
+          xDomainL2         : 70,        xDomainH2   : 150,
+          autoDomainLeft    : true, autoDomainRight : true,
+          oLink : 'https://fred.stlouisfed.org/series/FEDFUNDS',
+          oLink2: 'https://fred.stlouisfed.org/series/GFDEGDQ188S',
+          oLinkName:'Federal Funds Source',
+          oLinkName2:'Debt Percentage Source',
+          forwardFillX: true, forwardFillX2 : false,
+          dateStart         : '2013-01-01',  // ← show only 2010 onward
+          dateEnd           : '2021-01-01',  // ← optional upper bound
+          isTopL: false, isTopR :false, isBotL : false, isBotR : true
+        };
         
         
         /* ③ Draw‑all wrapper – keeps it tidy */
         function drawAllCharts() {
           renderCharts(debtsCfg);
+          renderCharts(fedfundsCfg)
         }
         
         /* ④ Initial render */

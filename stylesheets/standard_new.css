@@ -306,6 +306,10 @@
     margin: 0 auto;
   }
 
+  .articletext {
+    font-weight: 500; /* or 600/700 depending on how bold you want it */
+  }
+
   .main-article-card{
     width: 100%;
     max-width: 1350px;

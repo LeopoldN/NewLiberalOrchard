@@ -66,16 +66,63 @@ function renderCharts(config = {}) {
     // Get the size of the container (it will change on window resize)
     const container = d3.select(containerSelector);
     const containerWidth = container.node().getBoundingClientRect().width;
-    const containerHeight = container.node().getBoundingClientRect().height;
+    let containerHeight = container.node().getBoundingClientRect().height;
 
-    // Adjust margins based on screen width (smaller for mobile)
-    let margin = { top: 100, right: 80, bottom: 50, left: 80 };
+    /* ── Responsive height: keep a pleasant aspect ratio on small screens ── */
+    let responsiveHeight = containerHeight;           // default to existing
+    if (containerWidth < 350) {                       // very small phones
+    responsiveHeight = Math.round(containerWidth * 0.9);  // ~5:4
+    } else if (containerWidth < 500) {                // large phones
+    responsiveHeight = Math.round(containerWidth * 1.0);  // square-ish
+    } else if (containerWidth < 768) {                // tablets / small laptops
+    responsiveHeight = Math.round(containerWidth * 1.2);  // gentle portrait
+    }
+    /* Update the container div so next redraw picks up the new height */
+    container.style("height", responsiveHeight + "px");
+    containerHeight = responsiveHeight;
 
-    if (containerWidth < 500) {  // for mobile
-        margin = { top: 80, right: 30, bottom: 40, left: 30 };
-    } 
+    // ── Responsive margins & padding ──────────────────────────────
+    let margin;
+    if (containerWidth < 350) {           // very small phones
+        margin = { top: 60, right: 25, bottom: 40, left: 40 };
+    } else if (containerWidth < 500) {    // large phones
+        margin = { top: 80, right: 30, bottom: 45, left: 50 };
+    } else if (containerWidth < 768) {    // tablets / small laptops
+        margin = { top: 90, right: 50, bottom: 50, left: 60 };
+    } else {                              // desktop
+        margin = { top: 100, right: 80, bottom: 60, left: 80 };
+    }
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
+
+    // ── Typography, tick density & sizing helpers ─────────────────
+    const titleFontSize  = containerWidth < 350 ? "14px"
+                          : containerWidth < 500 ? "18px"
+                          : containerWidth < 768 ? "22px"
+                          : "24px";
+
+    const labelFontSize  = containerWidth < 350 ? "10px"
+                          : containerWidth < 500 ? "12px"
+                          : containerWidth < 768 ? "14px"
+                          : "16px";
+
+    const eventFontSizes = containerWidth < 350 ? "7px"
+                          : containerWidth < 500 ? "9px"
+                          : "12px";
+
+    const xTickCount = containerWidth < 350 ? 3
+                        : containerWidth < 500 ? 5
+                        : Math.floor(containerWidth / 90);
+
+    const yTickCount = containerWidth < 500 ? 4 : 8;
+
+    const strokeWidthFinal = containerWidth < 350 ? 1
+                           : containerWidth < 500 ? 1.5
+                           : strokeWidth;
+
+    const logoSize = containerWidth < 350 ? 40
+                     : containerWidth < 500 ? 60
+                     : 100;
 
     // Append the svg object to the chart container
     const svg = container
@@ -91,21 +138,17 @@ function renderCharts(config = {}) {
     var locationY =0;
     if(isTopL){locationX = 0-10; locationY = 0;}
     if(isTopR){locationX = (width-margin.right-10); locationY = 0;}
-    if(isBotL){locationX = 0-10; locationY = (height-100);}
-    if(isBotR){locationX = width-margin.right-10; locationY = (height-100);}
+    if(isBotL){locationX = 0-10; locationY = (height-logoSize);}
+    if(isBotR){locationX = width-margin.right-10; locationY = (height-logoSize);}
 
     svg.append("image")
         .attr("xlink:href", "/assets/Logo_black.svg")  // Path to the image file
         .attr("x", locationX)  // Adjust the x position to place the image as desired
         .attr("y", locationY)          // Adjust the y position to place the image as desired
-        .attr("width", 100)     // Set the width of the image
-        .attr("height", 100)   // Set the height of the image
+        .attr("width", logoSize)     // Set the width of the image
+        .attr("height", logoSize)   // Set the height of the image
         .attr("opacity", 0.5);  // Set the opacity (50% visible)  
 
-    // Adjust font sizes dynamically based on container width
-    const titleFontSize = containerWidth < 500 ? "16px" : "24px";  // smaller title for mobile
-    const labelFontSize = containerWidth < 500 ? "14px" : "16px";  // smaller labels for mobile
-    const eventFontSizes = containerWidth < 500 ? "8px" : "12px";
 
     // Add source text
     svg.append("text")
@@ -144,24 +187,26 @@ function renderCharts(config = {}) {
         .style("font-size", titleFontSize)
         .style("font-weight", "bold");
 
-        // Add axis labels
-        svg.append("text")
-            .attr("transform", `translate(${width / 2}, ${height + margin.bottom - 10})`)
-            .style("text-anchor", "middle")
-            .attr("class", "axis-label")
-            .text("Date");
+    // Add axis labels
+    svg.append("text")
+        .attr("transform", `translate(${width / 2}, ${height + margin.bottom - 10})`)
+        .style("text-anchor", "middle")
+        .attr("class", "axis-label")
+        .style("font-size", labelFontSize)
+        .text("Date");
 
-        // Y Axis Label
-        svg.append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left)
-            .attr("x", 0 - height / 2)
-            .attr("dy", "1em")
-            .style("text-anchor", "middle")
-            .attr("class", "axis-label")
-            .text(thisYTitle);
+    // Y Axis Label
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - height / 2)
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .attr("class", "axis-label")
+        .style("font-size", labelFontSize)
+        .text(thisYTitle);
 
-        if(isTwoVariables){
+    if(isTwoVariables){
         // Y Axis Label on the Right
         svg.append("text")
             .attr("transform", "rotate(90)")
@@ -170,8 +215,9 @@ function renderCharts(config = {}) {
             .attr("dy", "1em")
             .style("text-anchor", "middle")
             .attr("class", "axis-label")
+            .style("font-size", labelFontSize)
             .text(thisYTitleRight);
-        }
+    }
  
 
 
@@ -256,17 +302,27 @@ function renderCharts(config = {}) {
 
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x)
-            .ticks(Math.max(2, Math.floor(containerWidth / 100))) // Adjust number of ticks based on width
-        );  // fewer ticks on mobile;
+            .call(
+              d3.axisBottom(x)
+                .ticks(xTickCount)
+                .tickFormat(containerWidth < 500 ? d3.timeFormat("%Y") : d3.timeFormat("%b %Y"))
+            );
 
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(
+              d3.axisLeft(y)
+                .ticks(yTickCount)
+                .tickFormat(containerWidth < 500 ? d3.format(".2s") : d3.format(","))
+            );
 
         if(isTwoVariables){
         svg.append("g")
             .attr("transform", `translate(${width}, 0)`)  // Move to the right side
-            .call(d3.axisRight(y2));                      // Use axisRight for right-hand side
+            .call(
+              d3.axisRight(y2)
+                .ticks(yTickCount)
+                .tickFormat(containerWidth < 500 ? d3.format(".2s") : d3.format(","))
+            );
         }
 
         // Add gridlines
@@ -306,7 +362,7 @@ function renderCharts(config = {}) {
             .datum(data)
             .attr("fill", "none")
             .attr("stroke", strokeColor)
-            .attr("stroke-width", strokeWidth)
+            .attr("stroke-width", strokeWidthFinal)
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("d", d3.line()
@@ -317,7 +373,7 @@ function renderCharts(config = {}) {
             .datum(data)
             .attr("fill", "none")
             .attr("stroke", strokeColor2)
-            .attr("stroke-width", strokeWidth)
+            .attr("stroke-width", strokeWidthFinal)
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("d", d3.line()
@@ -329,7 +385,7 @@ function renderCharts(config = {}) {
             .datum(data)
             .attr("fill", "none")
             .attr("stroke", strokeColor)
-            .attr("stroke-width", strokeWidth)
+            .attr("stroke-width", strokeWidthFinal)
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("d", d3.line()
@@ -342,14 +398,14 @@ function renderCharts(config = {}) {
             .attr("class", "line Var 1")
             .attr("d", lineX1)
             .attr("stroke", strokeColor)
-            .attr("stroke-width", strokeWidth)
+            .attr("stroke-width", strokeWidthFinal)
             .attr("fill", "none");
         svg.append("path")
             .datum(data)
             .attr("class", "Line Var 2")
             .attr("d", lineX2)
             .attr("stroke", strokeColor2)
-            .attr("stroke-width", strokeWidth)
+            .attr("stroke-width", strokeWidthFinal)
             .attr("fill", "none");
     }else{
         svg.append("path")
@@ -357,7 +413,7 @@ function renderCharts(config = {}) {
             .attr("class", "line Var 1")
             .attr("d", lineX1)
             .attr("stroke", strokeColor)
-            .attr("stroke-width", strokeWidth)
+            .attr("stroke-width", strokeWidthFinal)
             .attr("fill", "none");
     }
         // Add candidate labels on the right side
